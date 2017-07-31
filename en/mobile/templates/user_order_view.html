@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+		<meta name = "viewport" content ="initial-scale=1.0,maximum-scale=1,user-scalable=no"><!-- 控制缩放比例 -->
+		<meta name="format-detection" content="telphone=no, email=no"/><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--  不让百度转码 -->
+		<title>{$page_title}</title>
+		<meta name="Keywords" content="{$keywords}" />
+		<meta name="Description" content="{$description}" />
+		<link rel="shortcut icon" href="../gsp_favicon.ico" />
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="templates/css/reset.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/base.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/layout.css?v=a11">
+		<!-- js -->
+		<script type="text/javascript" src="templates/js/jquery.min.js?v=a10"></script>
+		<script type="text/javascript" src="templates/js/custom.js?v=a10"></script>
+		<!-- banner -->
+		<link rel="stylesheet" type="text/css" href="templates/js/swiper/swiper.min.css">
+		<script type="text/javascript" src="templates/js/swiper/swiper.jquery.min.js"></script>
+	</head>
+	<body>
+		
+		<!-- Header -->
+		<div class="Header">
+			<div style="height:50px;"></div>
+			<header>
+				<div class="page-header">
+					<a href="user.html" class="page-return"></a>
+					<div class="page-name">My Order</div>
+				</div>
+			</header>
+		</div>
+		
+		
+		<!-- Contain -->
+		<div>
+			
+			<div class="uOrder-block">
+				<div class="uo-Iblock">
+					<div>
+						<label>Order No.：</label>
+						<em>{$order.order_sn}</em>
+					</div>
+					<div>
+						<label>Order time：</label>
+						<em>{$order.formated_add_time}</em>
+					</div>
+					<div>
+						<label>Order status：</label>
+						<em>{if $order.pay_status eq 2}Paid{else}Not paid{/if}</em>
+						{if $order.pay_status neq 2}
+						{$order.pay_online}&nbsp;&nbsp;<a class="uo-Ibtn" href="user.html?act=cancel_order&order_id={$order.order_id}">Cancel</a>
+						{/if}
+					</div>
+					<div>
+						<label>Payment method：</label>
+						<em>{$order.pay_name}</em>
+					</div>
+					<div>
+						<label>Order amount：</label>
+						<em>{$order.formated_order_amount}</em>
+					</div>
+					<div>
+						<label>Order note：</label>
+						<em>{$order.postscript}</em>
+					</div>
+				</div>
+				{foreach from=$goods_list item=v}
+				<div class="sc-d-b">
+					<div class="sc-img">
+						<a href="pro_view-{$v.goods_id}.html">
+							<img src="{$v.goods_img}" alt="{$v.goods_name}">
+						</a>
+					</div>
+					<div class="sc-info">
+						<!-- 显示框 -->
+						<a class="sc-i-show">
+							<span class="sc-i-name">{$v.goods_name}</span>
+						</a>
+						<div class="pro-price">
+							<span class="price-cur">{$v.goods_price} <em class="sc-num">{$v.goods_number}</em></span><!-- 现价 -->
+							<span class="price-cost">{$v.market_price}</span><!-- 原价 -->
+						</div>
+					</div>
+				</div>
+				{/foreach}
+			</div>
+			
+			
+				
+				
+		</div>
+		
+		
+		<!-- Footer -->
+		<div class="Footer">
+			<div style="height:75px;"></div>
+			<footer class="flex">
+				<a href="javascript:;" class="flex-1">
+					<i class="icon-footer icon-footer1"></i>
+					<div>Home</div>
+				</a>
+				<a href="javascript:;" class="flex-1">
+					<i class="icon-footer icon-footer2"></i>
+					<div>Products</div>
+				</a>
+				<a href="javascript:;" class="flex-1">
+					<i class="icon-footer icon-footer3"></i>
+					<div>Shopping Cart</div>
+				</a>
+				<a href="javascript:;" class="flex-1">
+					<i class="icon-footer icon-footer4"></i>
+					<div>Member Center</div>
+				</a>
+			</footer>
+		</div>
+		
+		
+		
+	</body>
+</html>

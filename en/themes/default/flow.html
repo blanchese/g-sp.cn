@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="themes/default/css/style.css"/>
+<link rel="shortcut icon" href="gsp_favicon.ico" />
+</head>
+<body>
+{include file="header_flow.html"}
+    {if $step eq 'cart'}
+    <div class="slider">
+    	<div class="slider_c wd1200">
+        	<div class="buy_sel">
+        		<div class="buy_selist">
+            		<ul>
+                		<li class="cur">
+                    		<div class="buy_selnum">1</div>
+                        	<div class="buy_selname">My Shopping Cart</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                    	<li>
+                    		<div class="buy_selnum">2</div>
+                        	<div class="buy_selname">Fill in the information and checking orders</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                    	<li>
+                    		<div class="buy_selnum">3</div>
+                       		<div class="buy_selname">Orders submitted successfully</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                	</ul>
+            	</div>        
+            </div>
+            
+            <div class="buy_name"><h3>Shopping Cart List</h3></div>
+            <div class="buy_table">
+            	<table width="1198" border="0">
+                	<tr class="buy_rol">
+                    	<td width="82" style="padding-left:36px">
+                        	<input class="buy_check" type="checkbox"/>&nbsp;&nbsp;All
+                        </td>
+                        <td width="380">Products Name</td>
+                        <td align="center" width="182">Original Price</td>
+                        <td align="center" width="180">Quantity</td>
+                        <td align="center" width="170">Special Price</td>
+                        <td align="center" width="168">Edit</td>
+                    </tr>
+                    {foreach from=$goods_list item="v"}
+                    <tr class="buy_rel price_tr{$v.rec_id}">
+                    	<td width="82" style="padding-left:36px">
+                        	<input class="buy_hacheck" type="checkbox" value="{$v.rec_id}"/>
+                        </td>
+                        <td width="380">
+                        	<a href="pro_view-{$v.goods_id}.html" target="_blank" class="buy_for" title="{$v.goods_name}">
+                            	<img width="64" height="64" alt="{$v.goods_name}" src="{$v.goods_thumb}"/>
+                                <span class="buy_ftitle fr col5">
+                                	{$v.goods_name}
+                                </span>
+                            </a>
+                        </td>
+                        <td align="center" width="182"><span class="col5">{$v.market_price}</span></td>
+                        <td align="center" width="180">
+                        	<div class="right-nNum fl">
+                            	<input type="text" class="num_text" value="{$v.goods_number}" name="{$v.rec_id}" readonly/>
+                                <a ondblclick="" href="javascript:;" class="num_up num_click" title="Reduce"></a>
+                                <a href="javascript:;" class="num_do num_click" title="Increase"></a>
+                            </div>
+                        </td>
+                        <td align="center" width="170"><span class="colf price_td">{$v.goods_price}</span></td>
+                        <td align="center" width="168"><a href="cart.html?step=drop_goods&id={$v.rec_id}" class="buy_del" title="Delete">Delete</a></td>
+                    </tr>
+                   {/foreach}  
+                </table>
+            </div>
+            <div class="buy_Aclick cl">
+            	<div class="buy_Actop">
+                	<div class="buy_Acfor fl">
+                    	<a href="javascript:;" title="Delete" class="buy_Acfor1">Delete</a>
+                        <a href="cart.html?step=clear" title="Empty Cart" class="buy_Acfor2">Empty Cart</a>
+                        <a href="cart.html" title="Reflash Cart" class="buy_Acfor3">Reflash Cart</a>
+                    </div>
+                    <div class="buy_Apri fr">
+                    	<span class="buy_Aphis">Original amount<font id="tmp">{$total.market_price}</font></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Special amount：<font id="sav">{$total.saving}</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total amount：<span class="buy_Amax colf">{$total.goods_price}</span>
+                    </div>
+                </div>
+                <div class="buy_Acdown cl">
+                	<a href="product.html" title="Order other goods" class="buy_Aniue fl">Order other goods</a>
+                    <a href="cart.html?step=checkout" title="Go for payment" class="buy_Aend fr">Go for payment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+   {elseif $step eq 'consignee'}
+    <div class="slider">
+    	<div class="slider_c wd1200">
+        	<div class="buy_sel">
+        		<div class="buy_selist">
+            		<ul>
+                		<li class="cur">
+                    		<div class="buy_selnum">1</div>
+                        	<div class="buy_selname">My shopping cart</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                    	<li class="cur">
+                    		<div class="buy_selnum">2</div>
+                        	<div class="buy_selname">Fill in and check order information</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                    	<li>
+                    		<div class="buy_selnum">3</div>
+                       		<div class="buy_selname">Successful submission of orders</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                	</ul>
+            	</div>        
+            </div>
+            <div class="buy_address">
+            	<div class="buy_addBox">
+                	<div class="buy_adBname"><h3>Receipt address</h3></div>
+                    <div class="buy_adBshow">
+                    	<div class="buy_adBtable">
+                    	    <form action="cart.html" method="post" onsubmit="return checkaddress(this)">
+                        	<table width="1200" border="0">
+                            	<tr height="54">
+                                	<td width="170">
+                                    	<label class="buy_lable fr">Local area</label>
+                                        <div class="buy_xx fr">*</div>
+                                    </td>
+                                    <td width="1030">
+                                    	<select class="buy_adSel bor" name="province" id="province">
+                                        	<option value="0">Please select provinces</option>
+                                        	{foreach from=$sheng_list item="v"}
+                                             <option value="{$v.region_id}" {if $consignee_list.province eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                                            {/foreach}
+                                        </select>
+                                        <select class="buy_adSel bor" name="city" id="city">
+                                        	<option value="0">V</option>
+                                        	{foreach from=$city_list item="v"}
+                                             <option value="{$v.region_id}" {if $consignee_list.city eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                                            {/foreach}
+                                        </select>
+                                        <select class="buy_adSel bor" name="district" id="district">
+                                        	<option value="0">Please select area</option>
+                                        	{foreach from=$district_list item="v"}
+                                             <option value="{$v.region_id}" {if $consignee_list.district eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                                            {/foreach}
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr height="76">
+                                	<td width="170" valign="top" style="padding-top:10px;">
+                                    	<label class="buy_lable fr">Address in detail</label>
+                                        <div class="buy_xx fr">*</div>
+                                    </td>
+                                    <td width="1030">
+                                    	<textarea class="buy_area com_text bor" name="address" placeholder="No need to repeat the provincial urban areas, less than 75 words">{$consignee_list.address}</textarea>
+                                    </td>
+                                </tr>
+                                <tr height="54">
+                                	<td width="170">
+                                    	<label class="buy_lable fr">Name of consignee</label>
+                                        <div class="buy_xx fr">*</div>
+                                    </td>
+                                    <td width="1030">
+                                    	<input type="text" class="buy_text com_text bor" name="consignee" placeholder="Please use the real name, the length of not more than 12 words" value="{$consignee_list.consignee}"/>
+                                    </td>
+                                </tr>
+                                <tr height="54">
+                                	<td width="170">
+                                    	<label class="buy_lable fr">Mobile</label>
+                                        <div class="buy_xx fr">*</div>
+                                    </td>
+                                    <td width="1030">
+                                    	<input type="text" class="buy_text com_text bor" name="mobile" placeholder="Phone number, phone number must be filled in a"  value="{$consignee_list.mobile}"/>
+                                    </td>
+                                </tr>
+                                <tr height="54">
+                                	<td width="170">
+                                    	<label class="buy_lable fr">Tel</label>
+                                        <!--<div class="buy_xx fr">*</div>
+                                    --></td>
+                                    <td width="1030">
+                                        <input type="text" class="buy_text com_text bor" name="tel"  placeholder="A telephone number is optional" value="{$consignee_list.tel}"/>
+                                    	<!--<input type="text" class="buy_text1 com_text bor fl" onfocus="this.value=''" onblur="this.value='Area code'" value="Area code"/>
+                                        <div class="buy_icon fl"><img width="13" height="36" src="images/buy_teicon.jpg"/></div>
+                                        <input type="text" class="buy_text2 com_text bor fl" onfocus="this.value=''" onblur="this.value='Tel'" value="Tel"/>
+                                        <div class="buy_icon fl"><img width="13" height="36" src="images/buy_teicon.jpg"/></div>
+                                        <input type="text" class="buy_text1 com_text bor fl" onfocus="this.value=''" onblur="this.value='Extension number (optional)'" value="Extension number (optional)"/>
+                                    --></td>
+                                </tr>
+                                <tr height="70">
+                                	<td width="170"></td>
+                                    <td width="1030">
+                                    	<input type="submit" class="buy_sub" value="Save receiving address"/>
+                                    	<input type="hidden" name="step" value="consignee"/>
+                                    	<input type="hidden" name="address_id" value="{$consignee_list.address_id}"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+             
+            </div>
+    
+        </div>
+    </div>
+    {elseif $step eq 'checkout'}
+    <div class="slider">
+    	<div class="slider_c wd1200">
+        	<div class="buy_sel">
+        		<div class="buy_selist">
+            		<ul>
+                		<li class="cur">
+                    		<div class="buy_selnum">1</div>
+                        	<div class="buy_selname">My Cart</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                    	<li class="cur">
+                    		<div class="buy_selnum">2</div>
+                        	<div class="buy_selname">Order verification</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                    	<li>
+                    		<div class="buy_selnum">3</div>
+                       		<div class="buy_selname">Submitted successful</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                	</ul>
+            	</div>        
+            </div>
+            <div class="buy_address">
+            	<div class="buy_addBox">
+                	<div class="buy_adBname"><h3>Receipt address</h3></div>
+                    <div class="buy_adBshow">
+                    	<div class="buy_adBtable">
+                    	    <form action="cart.html" method="post" onsubmit="return checkaddress(this)">
+                        	<table width="1200" border="0">
+                            	<tr height="54">
+                                	<td width="170">
+                                    	<label class="buy_lable fr">Local area</label>
+                                        <div class="buy_xx fr">*</div>
+                                    </td>
+                                    <td width="1030">
+                                    	<select class="buy_adSel bor" name="province" id="province">
+                                        	<option value="0">Please select provinces</option>
+                                        	{foreach from=$sheng_list item="v"}
+                                             <option value="{$v.region_id}" {if $consignee.province eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                                            {/foreach}
+                                        </select>
+                                        <select class="buy_adSel bor" name="city" id="city">
+                                        	<option value="0">Please select a city</option>
+                                        	{foreach from=$city_list item="v"}
+                                             <option value="{$v.region_id}" {if $consignee.city eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                                            {/foreach}
+                                        </select>
+                                        <select class="buy_adSel bor" name="district" id="district">
+                                        	<option value="0">Please select area</option>
+                                        	{foreach from=$district_list item="v"}
+                                             <option value="{$v.region_id}" {if $consignee.district eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                                            {/foreach}
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr height="76">
+                                	<td width="170" valign="top" style="padding-top:10px;">
+                                    	<label class="buy_lable fr">Address in detail</label>
+                                        <div class="buy_xx fr">*</div>
+                                    </td>
+                                    <td width="1030">
+                                    	<textarea class="buy_area com_text bor" name="address" placeholder="No need to repeat the provincial urban areas, less than 75 words">{$consignee.address}</textarea>
+                                    </td>
+                                </tr>
+                                <tr height="54">
+                                	<td width="170">
+                                    	<label class="buy_lable fr">Name of consignee</label>
+                                        <div class="buy_xx fr">*</div>
+                                    </td>
+                                    <td width="1030">
+                                    	<input type="text" class="buy_text com_text bor" name="consignee" placeholder="Please use the real name, the length of not more than 12 words" value="{$consignee.consignee}"/>
+                                    </td>
+                                </tr>
+                                <tr height="54">
+                                	<td width="170">
+                                    	<label class="buy_lable fr">Mobile No.</label>
+                                        <div class="buy_xx fr">*</div>
+                                    </td>
+                                    <td width="1030">
+                                    	<input type="text" class="buy_text com_text bor" name="mobile" placeholder="Mobile phone number, Tel must fill in a"  value="{$consignee.mobile}"/>
+                                    </td>
+                                </tr>
+                                <tr height="54">
+                                	<td width="170">
+                                    	<label class="buy_lable fr">Tel</label>
+                                        <!--<div class="buy_xx fr">*</div>
+                                    --></td>
+                                    <td width="1030">
+                                        <input type="text" class="buy_text com_text bor" name="tel"  placeholder="The phone is an optional" value="{$consignee.tel}"/>
+                                    	<!--<input type="text" class="buy_text1 com_text bor fl" onfocus="this.value=''" onblur="this.value='Area code'" value="Area code"/>
+                                        <div class="buy_icon fl"><img width="13" height="36" src="images/buy_teicon.jpg"/></div>
+                                        <input type="text" class="buy_text2 com_text bor fl" onfocus="this.value=''" onblur="this.value='Tel'" value="Tel"/>
+                                        <div class="buy_icon fl"><img width="13" height="36" src="images/buy_teicon.jpg"/></div>
+                                        <input type="text" class="buy_text1 com_text bor fl" onfocus="this.value=''" onblur="this.value='Extension number (optional)'" value="Extension number (optional)"/>
+                                    --></td>
+                                </tr>
+                                <tr height="70">
+                                	<td width="170"></td>
+                                    <td width="1030">
+                                    	<input type="submit" class="buy_sub" value="Modify receipt address"/>
+                                    	<input type="hidden" name="step" value="consignee"/>
+                                    	<input type="hidden" name="address_id" value="{$consignee.address_id}"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="buy_addBox"> 
+                   <form method="post" action="cart.html" id="cartfm" name="cartfm">
+                	<div class="buy_adBname"><h3>Select payment method</h3></div>
+                    <div class="buy_adBshow">
+                    	<div class="buy_pay">
+                        	<div class="buy_payName">Payment platform: recommended Alipay. Support all the banks and Alipay, without opening online banking.</div>
+                            <div class="buy_paylist">
+                            	<ul>
+                            	    {foreach from=$payment_list item="v"}
+                                	<li>
+                                    	<div class="buy_payImg"><img width="208" height="48" src="images/buy_bankImg1.jpg"/></div>
+                                        <div class="buy_payRadio"><input type="radio" name="payment" value="{$v.pay_id}"/></div>
+                                    </li>
+                                    {/foreach}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+					<div class="buy_adBshow">
+					<div class="buy_adBname"><h3>Order information</h3></div>
+					<div class="buy_adBshow"><textarea type="text" placeholder="Order information " style="width:500px;height:100px;" name="postscript"></textarea></div>				
+					</div>
+					
+                    <input type="hidden" name="step" value="done"/>
+                    <input type="hidden" name="shipping" value="3"/>
+                  </form>
+              </div>
+            </div>
+            <div class="buy_table">
+            	<table width="1198" border="0">
+                	<tr class="buy_rol">
+                        <td width="380" style="padding-left:30px;">Products Name</td>
+                        <td align="center" width="350">Original Price</td>
+                        <td align="center" width="190">Quantity</td>
+                        <td align="center" width="248">Special Price</td>
+                    </tr>
+                    {foreach from=$goods_list item="v"}
+                    <tr class="buy_rel">
+                        <td width="380" style="padding-left:30px;">
+                        	<a href="pro_view-{$v.goods_id}.html" target="_blank" class="buy_for" title="{$v.goods_name}">
+                            	<img width="64" height="64" alt="" src="{$v.goods_img}"/>
+                                <span class="buy_ftitle fr col5">
+                                	{$v.goods_name}
+                                </span>
+                            </a>
+                        </td>
+                        <td align="center" width="350"><span class="col5">{$v.formated_market_price}</span></td>
+                        <td align="center" width="190"><span class="col5">{$v.goods_number}</span></td>
+                        <td align="center" width="248"><span class="colf">{$v.formated_goods_price}</span></td>
+                    </tr>
+                    {/foreach}
+                </table>
+            </div>
+            <div class="buy_Aclick cl">
+            	<div class="buy_Actop">
+                	<a href="cart.html" title="Return to shopping cart modification" class="buy_Aniue fl">Return to shopping cart modification</a>
+                    <div class="buy_Apri fr">
+                    	<span class="buy_Aphis">Original amount{$total.formated_market_price}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Special amount：{$total.formated_saving}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount Payable：<span class="buy_Amax colf">{$total.formated_goods_price}</span>
+                    </div>
+                </div>
+                <div class="buy_Acdown cl">
+                   <a class="buy_Aend fr" id="buysub" title="Submit order" href="javascript:;">Submit order</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {elseif $step eq 'done'}
+    <div class="slider">
+    	<div class="slider_c wd1200">
+        	<div class="buy_sel">
+        		<div class="buy_selist">
+            		<ul>
+                		<li class="cur">
+                    		<div class="buy_selnum">1</div>
+                        	<div class="buy_selname">My Cart</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                    	<li class="cur">
+                    		<div class="buy_selnum">2</div>
+                        	<div class="buy_selname">Order verification</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                    	<li class="cur">
+                    		<div class="buy_selnum">3</div>
+                       		<div class="buy_selname">{if $order.pay_status eq 2}Successful payment order{else}Successful payment order{/if}</div>
+                        	<div class="buy_seline"></div>
+                    	</li>
+                	</ul>
+            	</div>        
+            </div>
+            <div class="buy_sys cl">
+            	<table width="722" border="0">
+                	<tr>
+                    	<td width="130" valign="top"><img width="130" height="130" src="themes/default/images/buy_sucImg.jpg"/></td>
+                        <td width="570" style="padding-left:22px;">
+                        	<h3 class="buy_sysName">{if $order.pay_status eq 2}Order has been paid successfully!{else}Order has been paid successfully!{/if}</h3>
+                            <div class="buy_Ntab">
+                            	<table width="570" border="0">
+                                	<tr height="28">
+                                    	<td width="226">Order number：<span class="colf">{$order.order_sn}</span></td>
+                                        <td width="344">Order amount：<span class="colf">{$total.amount_formated}</span></td>
+                                    </tr>
+                                    <tr height="28">
+                                    	<td width="226"><a href="user.html?act=order_detail&order_id={$order.order_id}" title="View order details>>" class="buy_sysCheck">View order details>></a></td>
+                                        <td width="344">payment method：<span class="colf">{$order.pay_name}</span></td>
+                                    </tr>
+
+                                    {if $pay_online}
+                                    <tr height="70">
+                                    	<td width="570" colspan="2">
+                                        	{$pay_online}
+                                        </td>
+                                    </tr>
+                                    {else}
+                                    <tr height="70">
+                                    	<td width="570" colspan="2">
+                                        	<div class="tk_click">
+                								<a href="user.html" title="Member Center">Member Center</a>
+                							</div>
+                                        </td>
+                                    </tr>
+                                    {/if}
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+   {/if}
+{include file="footer.html"}
+<script type="text/javascript">
+	$(function(){
+		$('.buy_paylist ul li').click(function(){
+			$(this).addClass('cur').siblings().removeClass('cur');
+			$(this).find('input').attr('checked','checked');
+		});
+		$('#buysub').click(function(){
+			 var val=$('input:radio[name="payment"]:checked').val();
+			 if(val=='undefined' || val== null){
+				 alert('Please select the payment method！');
+				 return false;
+		     }
+			 $("#cartfm").submit();	
+		});
+			
+ 		$('#province').change(function(){
+			var id=parseInt($(this).val());
+			$('#city').html('<option value="0">Please select a city</option>');
+			$('#district').html('<option value="0">Please select area</option>');
+			if(id>0){
+				$.post("user.html?act=ajax_city",{id:id,type:1}, function(msg){
+					 $('#city').html(msg);
+			   });
+			}
+ 	 	});
+ 		$('#city').change(function(){
+			var id=parseInt($(this).val());
+			$('#district').html('<option value="0">Please select area</option>');
+			if(id>0){
+				$.post("user.html?act=ajax_city",{id:id}, function(msg){
+					if(msg !=''){
+						$('#district').show();
+					  $('#district').html(msg);
+					}else{
+						$('#district').hide();
+					}
+			   });
+			}
+ 	 	}); 	
+	    $('.buy_Acfor1').click(function(){
+		    var str='';
+			$('.buy_hacheck').each(function(){
+				if($(this).attr('checked')=='checked'){
+					str+=$(this).val()+',';
+				}
+			});
+			if(str==''){
+				alert('Please select the goods to be deleted!');
+				return false;
+			}else{
+				var n=str.length-1;
+				var val=str.substr(0,n);
+				location='cart.html?step=drop_goods&id='+val;
+			}
+			//alert(str)
+		});
+		/*购物数量增加减少*/
+		$('.right-nNum').find('.num_do').click(function(){
+				var pri_text = parseInt($(this).parent('.right-nNum').find('.num_text').val());
+				var m = pri_text+1;
+				var id=parseInt($(this).parent('.right-nNum').find('.num_text').attr('name'));
+				$(this).parent('.right-nNum').find('.num_text').attr('value',m);
+				ajax_update_cart(id,m);
+			})	
+		$('.right-nNum').find('.num_up').click(function(){
+				var pri_text = parseInt($(this).parent('.right-nNum').find('.num_text').val());
+				var m = pri_text-1;
+				var id=parseInt($(this).parent('.right-nNum').find('.num_text').attr('name'));
+				if(m>0){
+					$(this).parent('.right-nNum').find('.num_text').attr('value',m);
+					ajax_update_cart(id,m);
+				}else{
+					alert('The number of goods can not be less than 1');
+					return false;
+				}
+			})		
+		
+		})
+		
+function ajax_update_cart(id,num){
+	$.post("cart.html?action=ajax_update_cart", {rec_id:id,number:num},function(msg){
+	   if(msg['error']==0){
+		   $('.buy_Amax').text(msg['content']['goods_price']);
+		   $('#tmp').text(msg['content']['market_price']);
+		   $('#sav').text(msg['content']['saving']);
+		   $('#cart_num').text(msg['content']['cart_num']);
+		   $('.price_tr'+id).find('.price_td').text('￥'+msg['price']+'element');
+	   }else{
+			alert(msg['message']);
+	   }
+	}, "json");    
+}
+function checkaddress(obj){
+	var province=obj.province.value;
+	var city=obj.city.value;
+	var address=obj.address.value;
+	var consignee=obj.consignee.value;
+	var mobile=obj.mobile.value;
+	if(province<1){
+		alert('Please select the province!');
+		return false;
+	}
+	if(city<1){
+		alert('Please select the city first!');
+		return false;
+	}
+	if(address.length<1){
+		alert('The detailed address cannot be empty!');
+		return false;
+	}
+	if(consignee.length<1){
+		alert('Consignee name cannot be empty!');
+		return false;
+	}
+	if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(mobile)) || mobile.length !=11){
+		alert('Phone number is not correct!');
+		return false;
+    }
+		
+}	
+</script>
+</body>
+</html>

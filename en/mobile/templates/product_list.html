@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+		<meta name = "viewport" content ="initial-scale=1.0,maximum-scale=1,user-scalable=no"><!-- 控制缩放比例 -->
+		<meta name="format-detection" content="telphone=no, email=no"/><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--  不让百度转码 -->
+		<title>{$page_title}</title>
+		<meta name="Keywords" content="{$keywords}" />
+		<meta name="Description" content="{$description}" />
+		<link rel="shortcut icon" href="../gsp_favicon.ico" />
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="templates/css/reset.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/base.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/layout.css?v=a11">
+		<!-- js -->
+		<script type="text/javascript" src="templates/js/jquery.min.js?v=a10"></script>
+		<script type="text/javascript" src="templates/js/custom.js?v=a10"></script>
+		<!-- banner -->
+		<link rel="stylesheet" type="text/css" href="templates/js/swiper/swiper.min.css">
+		<script type="text/javascript" src="templates/js/swiper/swiper.jquery.min.js"></script>
+	</head>
+	<body>
+		
+		<!-- Header -->
+		<div class="Header">
+			<div style="height:50px;"></div>
+			<header>
+				<div class="page-header">
+					<a href="index.html" class="page-return"></a>
+					<div class="header-nav">
+						<a href="javascript:;" class="nav-more"></a>
+					</div>
+					<div class="nav-box">
+						<div class="nav-block" style="display:none;">
+							{include file="nav.html"}
+						</div>
+					</div>
+					<div class="page-name">{$catinfo.cat_name}</div>
+				</div>
+			</header>
+		</div>
+		
+		
+		<!-- Contain -->
+		<div>
+		
+			<!-- 产品导航 -->
+			<div class="common-nav">
+				<ul>
+				    {foreach from=$product_cat item="v"}
+					<li {if $category eq $v.cat_id}class="cur"{/if}>
+						<a href="product-{$v.cat_id}.html">{$v.cat_name}</a>
+					</li>
+					{/foreach}
+				</ul>
+			</div>
+			
+			<!-- 条件 -->
+			<div class="terms-box">
+				<ul>
+					<li {if $sort_flag eq 'salesnum'}class="cur"{/if}>
+						<a href="product-{$category}.html?sort=salesnum&order={if $order_flag eq 'desc'}asc{else}desc{/if}">Sales Volume</a>
+					</li>
+					<li {if $sort_flag eq 'shop_price'}class="cur"{/if}>
+						<a href="product-{$category}.html?sort=shop_price&order={if $order_flag eq 'desc'}asc{else}desc{/if}">Price</a>
+					</li>
+				</ul>
+			</div>
+			
+			<!-- 产品列表 -->
+			<div class="pro-box">
+				<ul class="pro-list">
+                 {foreach from=$goods_list item=v}
+                  {if $v.goods_id gt 0}
+					<li>
+						<a href="{$v.url}"> 
+							<span class="pro-img">
+								<img src="{$v.goods_img}" alt="{$v.name}"/>
+							</span>
+							<div class="pro-info">
+								<span class="pro-name">{$v.name}</span>
+								<div class="pro-price">
+									<span class="price-cur">￥{$v.shop_price}</span><!-- 现价 -->
+									<span class="price-cost">￥{$v.market_price}</span><!-- 原价 -->
+								</div>
+							</div>
+						</a>
+					</li>
+					{/if}
+				{/foreach} 	
+				</ul>
+			</div>
+			
+			
+			<!-- 分页 -->
+			<div class="page-box">
+				<a href="product-{$category}-{$prev_page}.html" class="page-btn pb-prev">Previous</a>
+				<a href="product-{$category}-{$next_page}.html" class="page-btn pb-next">Next</a>
+			</div>
+			
+		</div>
+		
+		{include file="footer.html"}
+	</body>
+</html>

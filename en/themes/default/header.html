@@ -1,0 +1,56 @@
+	<!--公共头部-start-->
+    <div id="header" class="header">
+    	<div class="h_t">
+        	<div class="h_top wd1200">
+                <div id="demo" class="qimo8">Hello,Welcome to G-SP!</div>
+                <div class="h_lg fl">
+                    {if $smarty.session.user_id gt 0}
+                	<a href="user.html" title="{$smarty.session.user_name}">{$smarty.session.user_name}</a>|<a href="logout.html" title="Exit Login">Exit Login</a>
+                	{else}
+                	<a href="login.html" title="Login">Login</a>|<a href="register.html" title="Free Register">Free Register</a>
+                	{/if}
+                </div>
+                <div class="lang fr">
+                	<a href="http://www.g-sp.cn/index.html" title="中文">中文</a>|<a href="http://www.g-sp.cn/en/index.html" title="English">English</a>
+                </div>
+            </div>
+        </div>
+        <div class="h_c wd1200 cl">
+        	<div class="logo fl">
+            	<a href="index.html" title="G-SP"><img width="130" height="84" alt="G-SP" src="themes/default/images/logo.png"/></a>
+            </div>
+            <div class="h_car fr"><a href="cart.html" title="My shopping cart"><span>Shopping Cart<font id="cart_num">{$cart_num}</font></span></a></div>
+            <div class="nav fr">
+            	<ul>
+                	<li>
+                    	<a href="product.html" title="" class="nav_name">Products</a>
+                    </li>
+                    {foreach from=$footer_nav item="v"}
+                    <li>
+                    	<a href="list-{$v.cat_id}.html" title="{$v.cat_name}" class="nav_name">{$v.cat_name}</a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+        <div class="h_d cl">
+        	<div class="h_down wd1200">
+            	<div class="pro_menue fl">
+                	<ul>
+                	   {foreach from=$product_cat_list item="v"}
+                    	<li {if $v.cat_id eq $category}class="cur"{/if}>
+                        	<a href="product-{$v.cat_id}.html" title="{$v.cat_name}" class="pro_meName">{$v.cat_name}</a>
+                        </li>
+                       {/foreach}  
+                    </ul>
+                </div>
+                <div class="search fr">
+                	<form action="product.html">
+                    	<input type="text" class="ser_text fl" name="keywords" placeholder="Please enter production code..."/>
+                        <input type="submit" class="ser_button fr" value=""/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--公共头部-end-->

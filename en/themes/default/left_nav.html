@@ -1,0 +1,32 @@
+                	<ul>
+                    	<li {if $act eq 'order_list' or $act eq 'order_detail'}class="cur"{/if}>
+                        	<a href="user.html?act=order_list" title="My order">
+                            	<span class="mem_chicon1 mem_chicon fl"></span>
+                                <span class="mem_chtitle fl">My order</span>
+                            </a>
+                        </li>
+                        <li {if $act eq 'default'}class="cur"{/if}>
+                        	<a href="user.html" title="Personal Data">
+                            	<span class="mem_chicon2 mem_chicon fl"></span>
+                                <span class="mem_chtitle fl">Personal Data</span>
+                            </a>
+                        </li>
+                        <li {if $act eq 'change_password'}class="cur"{/if}>
+                        	<a href="user.html?act=change_password" title="Password Management">
+                            	<span class="mem_chicon3 mem_chicon fl"></span>
+                                <span class="mem_chtitle fl">Password Management</span>
+                            </a>
+                        </li>
+                        <li {if $act eq 'address_list'}class="cur"{/if}>
+                        	<a href="user.html?act=address_list" title="Receipt Address">
+                            	<span class="mem_chicon4 mem_chicon fl"></span>
+                                <span class="mem_chtitle fl">Receipt Address</span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="logout.html" title="Exit login">
+                            	<span class="mem_chicon4 mem_chicon fl"></span>
+                                <span class="mem_chtitle fl">Exit login</span>
+                            </a>
+                        </li>
+                    </ul>

@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="themes/default/css/style.css"/>
+<link rel="shortcut icon" href="gsp_favicon.ico" />
+<link href="themes/default/css/magiczoomplus.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+{include file="header.html"}
+    <div class="pro_view">
+    	<div class="pro_have wd1200">
+        	<div class="chnal_po">
+                <div class="position fr">
+                	{$ur_here}
+                </div>
+            </div>
+            <div class="pro_Vt cl">
+            	<div class="pro_Vtshow">
+                	<div class="left-pro fl">
+                        <div class="t2">
+                           {foreach from=$pictures item="v" key="k"}
+                           {if $k eq 0}
+							<a href="{$v.img_url}" id="zoom1" class="MagicZoom MagicThumb"><img src="{$v.img_url}" id="main_img" class="main_img" style="width:360px;height:360px;" /></a>
+							{/if}
+							{/foreach}
+						</div>
+                        <div class="t1">
+                       		<a id="gotop" href="javascript:;"></a>
+							<div id="showArea" class="showArea">
+                        		<ul>
+                                	{foreach from=$pictures item="v" key="k"}
+                                	<li {if $k eq 0}class="cur"{/if}>
+                                		<a href="{$v.img_url}" rel="zoom1" rev="{$v.img_url}"><img width="64" height="64" src="{$v.img_url}" /></a>
+                                	</li>
+                                    {/foreach}
+                        		</ul>        
+							</div>
+                        	<a id="gobottom" href="javascript:;"></a>
+						 </div>
+					</div>
+                    <div class="right-pro fr">
+					    <form action="javascript:addToCart({$goods.goods_id})" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+                        <div class="right_name"><h3>{$goods.goods_name}</h3></div>
+                    	<div class="right_intro" style="padding-bottom:10px;">{$goods.seller_note}</div>
+                        <div class="right-pri">
+                        	<div class="right_pripo fl">Price<span>${$goods.shop_price}</span></div>
+                            <div class="right_prless fl">Market Price<span>${$goods.market_price}</span></div>
+                        </div>
+                        <div class="right_table">
+                        	<table width="594" border="0">
+                            	<tr height="34" class="right_taRol">
+                                	<td class="right_tawd1">MOQ</td>
+                                    <td class="right_tawd2">Price</td>
+                                </tr>
+                                {foreach from=$volume_price_list item=price_list key=price_key}
+                                <tr height="34" class="right_taRel">
+                                	<td class="right_tawd1">{$price_list.number_str}</td>
+                                    <td class="right_tawd2">{$price_list.format_price}</td>
+                                </tr>
+                                {/foreach}
+                            </table>
+                        </div><!--
+                        <div class="right_sel">
+                        	<div class="right_seName fl">颜色：</div>
+                            <div class="right_seList">
+                            	<ul>
+                            	    {foreach from=$specification item="v" key=spec_key}
+	                            	    {if $v.attr_type eq 1}
+	                            	        {foreach from=$v.values item="vo"}
+	                                		<li><img width="36" height="36" src="{$vo.picurl}"/>
+											<input type="radio" name="spec_{$spec_key}" value="{$vo.id}" id="spec_value_{$vo.id}" {if $key eq 0}checked{/if} style="display:none"/>
+											</li>
+	                                		{/foreach}
+	                                	{/if}
+                                    {/foreach}
+                                </ul>
+                            </div>
+                        </div>
+                        --><div class="right-num cl">
+                        	<div class="right-nName fl">Quantity</div>
+                            <div class="right-nNum fl">
+                            	<input type="text" class="num_text" value="1" />
+                                <a ondblclick="" href="javascript:;" class="num_up num_click" title="Reduce"></a>
+                                <a href="javascript:;" class="num_do num_click" title="Increase"></a>
+                            </div>
+                            <div class="right-nAsk fl">Adequate Inventory</div>
+                            
+                        </div>
+                        <div class="right-nClick cl">
+                        	<a href="javascript:;" class="right-buy fl" title="Buy Now" onclick="addToCart({$id},1)">Buy Now</a>
+                            <a href="javascript:;" class="right-car fl" title="Add to Cart" onclick="addToCart({$id},0)"><span>Add to Cart</span></a>
+                        </div>
+               	  	</div>
+					</form>
+                </div>
+			</div>
+            <div class="pro_Vd cl">
+            	<div class="pro_Vdl fl">
+                	<div class="pro_htName"><h3>Hot Sales</h3></div>
+                    <div id="pro_hmove" class="pro_hmove">
+                    	<div class="pro_shlist">
+                        	<ul>
+                        	   {foreach from=$hot_list item="v"}
+                            	<li>
+                        			<div class="pro_shImg">
+                            			<a href="pro_view-{$v.goods_id}.html" title="{$v.goods_name}"><img width="230" height="230" alt="{$v.goods_name}" src="{$v.goods_img}"/></a>
+                            		</div>
+                            		<div class="pro_shAll">
+                            			<span class="pro_sApri fl">${$v.shop_price}</span>
+                                		<span class="pro_sAless fr">${$v.market_price}</span>
+                            		</div>
+                            		<div class="pro_shTitle"><a href="pro_view-{$v.goods_id}.html" title="{$v.goods_name}">{$v.goods_name}</a></div>
+                                	<div class="pro_hot"><a href="pro_view-{$v.goods_id}.html">Hot Sales</a></div>
+                        		</li>
+                                {/foreach}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="pro_Vdr fr">
+                	<div class="pro_vdRname"><h3>Products Details</h3></div>
+                    <div class="pro_Vdrfor">
+                    	<div class="content">{$goods.goods_desc}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+{include file="footer.html"}
+<script type="text/javascript" src="themes/default/js/mzp-packed.js"></script>
+<script type="text/javascript" src="themes/default/js/scroll.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.list_lh li:even').addClass('lieven');
+	
+	$(".pro_hmove .pro_shlist").myScroll({
+		speed:40, //数值越大，速度越慢
+		rowHeight:301 //li的高度
+	});
+	$('.right_seList li').click(function(){
+		$(this).addClass('cur').siblings().removeClass('cur');
+		$(this).find('input').attr('checked',true);
+		$(this).siblings().find('input').attr('checked',false);
+	});
+})
+</script>
+<script type="text/javascript" src="js/jquery.json-1.3.js"></script>
+<script type="text/javascript">
+$(function(){
+ 	/*购物数量增加减少*/
+	$('.right-nNum').find('.num_do').click(function(){
+		var pri_text = parseInt($(this).parent('.right-nNum').find('.num_text').val());
+		var m = pri_text+1;
+		$(this).parent('.right-nNum').find('.num_text').attr('value',m)
+	});	
+	$('.right-nNum').find('.num_up').click(function(){
+		var pri_text = parseInt($(this).parent('.right-nNum').find('.num_text').val());
+		var m = pri_text-1;
+		if(m>0){
+			$(this).parent('.right-nNum').find('.num_text').attr('value',m)
+		}else{
+			alert('Quantity may not be less than 1')
+		}
+	});		
+})
+function addToCart(goodsId,type)
+{
+  var goods        = new Object();
+  var spec_arr     = new Array();
+  var fittings_arr = new Array();
+  var formBuy      = document.forms['ECS_FORMBUY'];  
+  var number       = parseInt($('.num_text').val());
+  var quick		   = 0;
+
+  // 检查是否有商品规格 
+  if (formBuy)
+  {
+    spec_arr = getSelectedAttributes(formBuy);
+	quick = 1;
+  }
+  if(number<1){ number=1; }
+ 
+  goods.quick    = quick;
+  goods.spec     = spec_arr;
+  goods.goods_id = goodsId;
+  goods.number   = number;
+  goods.parent   = 0;
+  var cart_num=parseInt($('#cart_num').text())+number;
+  $.post("cart.html?step=add_to_cart", { goods: $.toJSON(goods)},function(result){
+	  if (result.error > 0){
+		    // 如果需要缺货登记，跳转
+		    if (result.error == 2){
+		      alert('Sorry, merchandise inventory shortage!');
+		    }else{
+		      alert(result.message);
+		    }
+	  }else{
+	    if(type>0){
+			location.href='cart.html?step=cart';
+		}else{
+			$('#cart_num').html(cart_num);
+			alert('Added successfully！');
+		}
+	  }
+  },'JSON');
+  
+}
+ 
+function getSelectedAttributes(formBuy)
+{
+	  var spec_arr = new Array();
+	  var j = 0;
+
+	  for (i = 0; i < formBuy.elements.length; i ++ )
+	  {
+	    var prefix = formBuy.elements[i].name.substr(0, 5);
+
+	    if (prefix == 'spec_' && (
+	      ((formBuy.elements[i].type == 'radio' || formBuy.elements[i].type == 'checkbox') && formBuy.elements[i].checked) ||
+	      formBuy.elements[i].tagName == 'SELECT'))
+	    {
+	      spec_arr[j] = formBuy.elements[i].value;
+	      j++ ;
+	    }
+	  }
+
+	  return spec_arr;
+	}
+</script>
+</body>
+</html>

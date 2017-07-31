@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<title>{$page_title}</title>
+		<meta name="Keywords" content="{$keywords}" />
+		<meta name="Description" content="{$description}" />
+		<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+		<meta name = "viewport" content ="initial-scale=1.0,maximum-scale=1,user-scalable=no"><!-- 控制缩放比例 -->
+		<meta name="format-detection" content="telphone=no, email=no"/><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--  不让百度转码 -->
+		
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="templates/css/reset.css?v=a10">
+		<link rel="stylesheet" type="text/css" href="templates/css/base.css?v=a10">
+		<link rel="stylesheet" type="text/css" href="templates/css/layout.css?v=a10">
+		
+		<!-- js -->
+		<script type="text/javascript" src="templates/js/jquery.min.js?v=a10"></script>
+		<script type="text/javascript" src="templates/js/custom.js?v=a10"></script>
+		
+		<!-- banner -->
+		<link rel="stylesheet" type="text/css" href="templates/js/swiper/swiper.min.css">
+		<script type="text/javascript" src="templates/js/swiper/swiper.jquery.min.js"></script>
+		<link rel="shortcut icon" href="../gsp_favicon.ico" />
+	</head>
+	<body>
+		
+		<!-- Header -->
+		<div class="Header">
+			<div style="height:50px;"></div>
+			<header>
+				<div class="index-header">
+				
+					<a href="index.html">
+						<img src="templates/images/logo.png" alt="" class="logo"/>
+					</a>
+					<div class="header-nav">
+						<a href="javascript:;" class="nav-language"></a>
+						<a href="javascript:;" class="nav-search"></a>
+						<a href="javascript:;" class="nav-more"></a>
+					</div>
+					
+					<div class="nav-box">
+						<div class="nav-block" style="display:none;">
+							 <ul class="language-list">
+							 	<li>
+									<a href="http://www.g-sp.cn/mobile/index.html">Chinese</a>
+								</li>
+							 	<li>
+									<a href="http://www.g-sp.cn/en/mobile/index.html">English</a>
+								</li>
+							 </ul>
+						</div>
+						
+						<div class="nav-block" style="display:none;">
+							<div class="header-search">
+							    <form action="product.html">
+								<input type="text"  name="keywords"/><input type="submit" value=""/>		
+								</form>
+							</div>
+						</div>
+					
+						<div class="nav-block" style="display:none;">
+							{include file="nav.html"}
+						</div>
+					</div>
+					
+				</div>
+			</header>
+		</div>
+		
+		
+		<!-- Contain -->
+		<div>
+		
+			<!-- 产品导航 -->
+			<div class="pro-nav">
+				<ul>
+				    {foreach from=$product_cat_list item=v}
+					<li>
+						<a href="product-{$v.cat_id}.html">{$v.cat_name}</a>
+					</li>
+					{/foreach}
+				</ul>
+			</div>
+			
+			<!-- banner -->
+			<div class="swiper-container indexPro-banner">
+				<div class="swiper-wrapper">
+                    {foreach from=$banner_ad item="v"}
+					<div class="swiper-slide">
+						<a href="{$v.ad_link}"><img src="../data/afficheimg/{$v.ad_code}"/></a>
+					</div>
+					{/foreach} 
+				</div>
+				<div class="swiper-pagination indexPro-pagination"></div>
+			</div>
+			<script>
+				var indexProSwiper = new Swiper('.indexPro-banner', {
+					pagination: '.indexPro-pagination'
+				});
+			</script>
+			
+			<!-- 服务 -->
+			<div class="index-service flex">
+				<a class="is-block flex-1">
+					<i class="icon-service icon-service1"></i>
+					<div>High Quality</div>
+				</a>
+				<a class="is-block flex-1">
+					<i class="icon-service icon-service2"></i>
+					<div>24H Service</div>
+				</a>
+				<a class="is-block flex-1">
+					<i class="icon-service icon-service3"></i>
+					<div>Quick Delivery</div>
+				</a>
+				<a class="is-block flex-1">
+					<i class="icon-service icon-service4"></i>
+					<div>Safe Payments</div>
+				</a>
+			</div>
+			
+			<!-- 热销产品 -->
+			<div class="hp-title">
+				<span class="hp-t-n">Top Products</span>
+				<a href="product.html" class="hp-t-m">More</a>
+			</div>
+			
+			<!-- 产品列表 -->
+			<div class="pro-box">
+				<ul class="pro-list">
+				   {foreach from=$hot_pro_list item=v}
+					<li>
+						<a href="pro_view-{$v.goods_id}.html"> 
+							<span class="pro-img">
+								<img src="../{$v.goods_img}" alt="{$v.goods_name}"/>
+							</span>
+							<div class="pro-info">
+								<span class="pro-name">{$v.goods_name}</span>
+								<div class="pro-price">
+									<span class="price-cur">￥{$v.shop_price}</span><!-- 现价 -->
+									<span class="price-cost">￥{$v.market_price}</span><!-- 原价 -->
+								</div>
+							</div>
+						</a>
+					</li>
+					{/foreach} 
+				</ul>
+			</div>
+			
+		</div>
+		
+		
+   {include file="footer.html"}
+		
+		
+		
+	</body>
+</html>

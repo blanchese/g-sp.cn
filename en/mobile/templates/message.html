@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+		<meta name = "viewport" content ="initial-scale=1.0,maximum-scale=1,user-scalable=no"><!-- 控制缩放比例 -->
+		<meta name="format-detection" content="telphone=no, email=no"/><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--  不让百度转码 -->
+		<title>{$page_title}</title>
+		<meta name="Keywords" content="{$keywords}" />
+		<meta name="Description" content="{$description}" />
+		<link rel="shortcut icon" href="../gsp_favicon.ico" />
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="templates/css/reset.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/base.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/layout.css?v=a11">
+		<!-- js -->
+		<script type="text/javascript" src="templates/js/jquery.min.js?v=a10"></script>
+		<script type="text/javascript" src="templates/js/custom.js?v=a10"></script>
+		<!-- banner -->
+		<link rel="stylesheet" type="text/css" href="templates/js/swiper/swiper.min.css">
+		<script type="text/javascript" src="templates/js/swiper/swiper.jquery.min.js"></script>
+		<meta http-equiv="refresh" content="3;URL={$message.back_url}" />
+	</head>
+	<body class="orderPay-page">
+		
+		<!-- Header -->
+		<div class="Header">
+			<div style="height:50px;"></div>
+			<header>
+				<div class="page-header">
+					<a href="javascript:;" class="page-return"></a>
+					<div class="page-name">system prompt</div>
+				</div>
+			</header>
+		</div>
+		
+		
+		<!-- Contain -->
+		<div>
+			
+			<div class="order-pay vertical-container">
+				<div class="op-block">
+					{if $message.type eq 'error'}<img src="templates/images/pay-fail.png" alt=""/>{else}<img src="templates/images/pay-suc.png" alt=""/>{/if}
+					<div class="op-state">
+						<div class="state">{$message.content}</div>
+						<div class="money">Page automatic jump <span style="color:red" id="wait">3</span> s</div>
+						<a class="op-btn" href="{$message.back_url}">Return to the last page</a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		{include file="footer.html"}
+	</body>
+</html>
+<script type="text/javascript">
+(function(){
+var wait = document.getElementById('wait'),href = "{$message.back_url}";
+var interval = setInterval(function(){
+	var time = --wait.innerHTML;
+	if(time <= 0) {
+		location.href = href;
+		clearInterval(interval);
+	};
+}, 1000);
+})();
+</script>  

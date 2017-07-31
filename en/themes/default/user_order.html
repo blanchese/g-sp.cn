@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="themes/default/css/style.css"/>
+<link rel="shortcut icon" href="gsp_favicon.ico" />
+</head>
+<body>
+	{include file="header.html"}
+   	<div class="member cl">
+    	<div class="member_c wd1200">
+        	<div class="chnal_po">
+                <div class="position fr">
+                	{$ur_here}
+                </div>
+            </div>
+            <div class="cl"></div>
+        	<div class="mem_l fl">
+            	<div class="mem_name"><h3>Personal Center</h3></div>
+                <div class="mem_chnal">
+					{include file="left_nav.html"}
+                </div>
+            </div>
+            <div class="mem_r fr">
+            	<div class="mem_rSel">
+                	<ul>
+                    	<li {if $status eq 0}class="cur"{/if}><a href="user.html?act=order_list" >All Orders({$total_count})</a></li>
+                        <li {if $status eq 1}class="cur"{/if}><a href="user.html?act=order_list&status=1" >Payment Success({$pay_count})</a></li>
+                        <li {if $status eq 2}class="cur"{/if}><a href="user.html?act=order_list&status=2" >No Payment({$npay_count})</a></li>
+                        <li {if $status eq 3}class="cur"{/if}><a href="user.html?act=order_list&status=3" >Cancel Order({$cancel_count})</a></li>
+                	</ul>        
+                </div>
+               	<div class="order cl">
+                    <div class="order_love">
+                        <span class="colf">Order Prompt:</span>Dear users, for online payment is not complete order, we will keep you for 48 hours (from the date of order), 48 hours later, if not paid, the system will automatically cancel the order.
+                    </div>
+                    <div class="order_table cl">
+                    	<table width="914" border="0">
+                        	<tr class="order_rol">
+                            	<td style="padding-left:8px;" width="350">Order Detail</td>
+                                <td width="140" align="center">Buying Time</td>
+                                <td width="140" align="center">Order Amount</td>
+                                <td width="140" align="center">State</td>
+                                <td width="136" align="center">Operation</td>
+                            </tr>
+                            {foreach from=$orders item=v}
+                            <tr class="order_rel">
+                            	<td colspan="5" width="914">
+                            		<div class="order_reTable">
+                                		<table width="914" border="1" bordercolor="#dcdcdc">
+                                    		<tr class="order_reRol">
+                                        		<td colspan="5">
+                                            		<span class="order_reName">Order Number:<span>{$v.order_sn}</span></span>
+                                            	</td>
+                                        	</tr>
+                                            <tr class="order_reRel">
+                                        		<td style="padding-left:8px;" width="350">
+                                        		   {foreach from=$v.list item="vo"}
+                                                	<a href="pro_view-{$vo.goods_id}.html" target="_blank" class="buy_for" title="{$vo.goods_name}">
+                            							<img width="64" height="64" alt="{$vo.goods_name}" src="{$vo.goods_img}"/>
+                                						<span class="buy_ftitle fr col5">
+                                							{$vo.goods_name}
+                                						</span>
+                            						</a>
+                            						{/foreach}
+                                                </td>
+                               	 				<td width="140" align="center">
+                                                	<span class="col8 order_time">{$v.order_time}<br/>
+													{$v.hour_time}</span>
+                                                </td>
+                                				<td width="140" align="center">
+                                                	<span class="order_pri">{$v.total_fee}</span><br/>{$v.pay_name}
+                                                </td>
+                                				<td width="140" align="center"><span class="col8">{$v.order_status}</span></td>
+                                				<td width="134" align="center" class="order_click">
+                                                	<a href="user.html?act=order_detail&order_id={$v.order_id}" title="More">More</a><br>
+                                                	{$v.handler}
+                                                </td>
+                                        	</tr>
+                                    	</table>
+                                	</div>  
+                            	</td>
+                            </tr>
+                            <tr height="20"></tr>
+                            {/foreach}
+                        </table>
+                    </div>
+                    {if $orders}
+                    <div class="page cl">
+						{include file="page.html"}
+                	</div>
+                	{/if}
+            	</div>
+            </div>
+        </div>
+    </div>
+ {include file="footer.html"}
+</body>
+</html>

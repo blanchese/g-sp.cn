@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="themes/default/css/style.css"/>
+<link rel="shortcut icon" href="gsp_favicon.ico" />
+</head>
+<body>
+	{include file="header.html"}
+    <div class="product">
+    	<div class="pro_have wd1200">
+         
+            <div class="pro_filter cl">
+                <div class="pro_filBox2 pro_filBox">
+                	<div class="pro_filname fl">Sort:</div>
+                    <div class="pro_fillist fl">
+                    	<a {if $sort_flag eq 'salesnum'}class="cur"{/if} href="product.html?keywords={$keywords}&sort=salesnum&order={if $order_flag eq 'desc'}asc{else}desc{/if}" title="Sales Volume"><span>Sales Volume</span></a>
+                        <a {if $sort_flag eq 'shop_price'}class="cur"{/if} href="product.html?keywords={$keywords}&sort=shop_price&order={if $order_flag eq 'desc'}asc{else}desc{/if}" title="Price"><span>Price</span></a>
+                    </div>
+                    {if $goods_list}
+                    <div class="pro_filcl fr">
+                    	<div class="pro_filnum fl">{$page}/{$max_page}</div>
+                        <a href="product.html?keywords={$keywords}&page={$prev_page}&sort={$sort_flag}&order={$order_flag}" title="上一排" class="pro_filpre pro_filpage fl"></a>
+                        <a href="product.html?keywords={$keywords}&page={$next_page}&sort={$sort_flag}&order={$order_flag}" title="下一排" class="pro_filnext pro_filpage fl"></a>
+                    </div>
+                    {/if}
+                </div>
+            </div>
+            <div class="pro_halist cl">
+            	<div class="pro_show">
+            		<div class="pro_shlist">
+                		<ul>
+                		   {foreach from=$goods_list item=v}
+                		    {if $v.goods_id gt 0}
+                    		<li>
+                        		<div class="pro_shImg">
+                            		<a href="{$v.url}" title="{$v.name}"><img width="230" height="230" alt="{$v.name}" src="{$v.goods_img}"/></a>
+                            	</div>
+                            	<div class="pro_shAll">
+                            		<span class="pro_sApri fl">￥{$v.shop_price}</span>
+                                	<span class="pro_sAless fr">￥{$v.market_price}</span>
+                            	</div>
+                            	<div class="pro_shTitle"><a href="{$v.url}" title="{$v.name}">{$v.name}</a></div>
+                            	{if $v.ishot eq 1}
+                                <div class="pro_hot"><a href="{$v.url}">Hot Sales</a></div>
+                                {/if}
+                        	</li>
+                        	{/if}
+                          {/foreach} 
+                    	</ul>
+                	</div>
+            	</div>
+            </div>
+            <div id="pro_romd" class="pro_romd cl">
+            	<div class="pro_rdTop">
+                	<h3 class="pro_rdTname fl">New Products</h3>
+                    <a class="abtn aleft" href="#left" title="prev"></a>
+            		<a class="abtn aright fr" href="#right" title="next">Change other batch</a>
+                </div>
+                <div class="pro_rodlist">
+                	<div class="pro_shlist">
+                		<ul>
+                		   {foreach from=$new_pro_list item="v"}
+                    		<li>
+                        		<div class="pro_shImg">
+                            		<a href="pro_view-{$v.goods_id}.html" title="{$v.goods_name}"><img width="230" height="230" alt="{$v.goods_name}" src="{$v.goods_img}"/></a>
+                            	</div>
+                            	<div class="pro_shAll">
+                            		<span class="pro_sApri fl">￥{$v.shop_price}</span>
+                                	<span class="pro_sAless fr">￥{$v.market_price}</span>
+                            	</div>
+                            	<div class="pro_shTitle"><a href="pro_view-{$v.goods_id}.html" title="{$v.goods_name}">{$v.goods_name}</a></div>
+                        	</li>
+                           {/foreach}  
+                    	</ul>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>    
+{include file="footer.html"}
+<script type="text/javascript" src="themes/default/js/slider.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$("#pro_romd").xslider({
+			unitdisplayed:4,
+			movelength:4,
+			unitlen:301,
+			autoscroll:3000
+		});
+		
+		
+	})
+</script>
+</body>
+</html>

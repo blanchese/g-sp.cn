@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="themes/default/css/style.css"/>
+<link rel="shortcut icon" href="gsp_favicon.ico" />
+</head>
+<body>
+{include file="header.html"}
+    <div class="body">
+    	<div class="body_c wd1200">
+        	<div class="chnal_po">
+            	<div class="chnal fl">
+            	   {foreach from=$art_cat_list item="v"}
+                	<a {if $article.cat_id eq $v.cat_id}class="cur"{/if} href="list-{$v.cat_id}.html" title="{$v.cat_name}">{$v.cat_name}</a>
+                   {/foreach}	
+                </div>
+                <div class="position fr">
+                	{$ur_here}
+                </div>
+            </div>
+            <div class="news_view cl">
+            	<div class="title"><h3>{$article.title}</h3></div>
+                <div class="news_infor">
+                    <span class="news_Ftime">{$article.add_time}</span>
+                	<span class="news_Fpeo">Issuer：{$article.author}</span>
+                </div>
+                <div class="news_con">
+                	<div class="content">{$article.content}</div>
+                </div>
+                <div class="pre_nextPage cl">
+                    <a href="{$next_article.url}" title="{$next_article.title}" class="next_page fl">Previous：{if $next_article}{$next_article.title}{else}Nothing{/if}</a>
+                    <a href={$prev_article.url} title="{$prev_article.title}" class="pre_page fr">Next：{if $prev_article}{$prev_article.title}{else}Nothing{/if}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{include file="footer.html"}
+</body>
+</html>

@@ -1,0 +1,43 @@
+/*banner效果*/
+.banner { position:relative; width:100%; height:616px; min-width:1200px; overflow:hidden;}
+.banner_list{ width:100%; height:616px; overflow:hidden;}
+.banner_list li { height:616px; position:absolute; width:100%; display:none;}
+.banner_list li img{ position:absolute; left:50%; top:0; margin-left:-960px; width:1920px; height:616px;}
+.banner_owd{ position:absolute; bottom:0; left:50%; margin-left:-600px; z-index:200; width:1200px; height:36px;}
+.banner_btn{ width:100%; height:36px; text-align:center;}
+.banner_btn a{ display:inline-block; background:url(../images/banner_ac.png) no-repeat; font-size:0; text-indent:-9999; width:11px; height:11px; margin:0 3px; cursor:pointer;}
+.banner_btn a.on{ background:url(../images/banner_ho.png) no-repeat;}
+
+/*four-add*/
+.four_add{ height:220px; padding:20px 0;}
+.four_adlist{ position:relative; width:1200px; height:220px; overflow:hidden;}
+.four_adlist li{ position:absolute; top:0; width:100%; height:100%; opacity:1; overflow:hidden; transition:left 300ms ease 0s, opacity 700ms ease 0s; -moz-transition:left 300ms ease 0s, opacity 700ms ease 0s; -webkit-transition:left 300ms ease 0s, opacity 700ms ease 0s; -o-transition:left 300ms ease 0s, opacity 700ms ease 0s;}
+.four_adlist .four_ad1{ z-index:1;}
+.four_adlist .four_ad2{ z-index:2;}
+.four_adlist .four_ad3{ z-index:3;}
+.four_adlist .four_ad4{ z-index:4;}
+.cur0 .four_ad1{ left:0;}
+.cur0 .four_ad2{ left:522px;} 
+.cur0 .four_ad3{ left:748px;} 
+.cur0 .four_ad4{ left:974px;}
+.cur1 .four_ad1{ left:0;}
+.cur1 .four_ad2{ left:522px;} 
+.cur1 .four_ad3{ left:748px;}
+.cur1 .four_ad4{ left:974px;}
+.cur2 .four_ad1{ left:0;}
+.cur2 .four_ad2{ left:226px;}
+.cur2 .four_ad3{ left:748px;}
+.cur2 .four_ad4{ left:994px;}
+.cur3 .four_ad1{ left:0;}
+.cur3 .four_ad2{ left:296px;}
+.cur3 .four_ad3{ left:452px;}   
+.cur3 .four_ad4{ left:974px;}
+.cur4 .four_ad1{ left:0;}
+.cur4 .four_ad2{ left:296px;}
+.cur4 .four_ad3{ left:542px;}   
+.cur4 .four_ad4{ left:678px;} 
+
+/*hot*/
+.hot{ background:url(../images/hot_probd.jpg) repeat-x; width:100%; height:738px; min-width:1200px; overflow:hidden;}
+.hot .hot_prname{ color:#FFF;}
+.hot .more{ background:url(../images/more_icon1.png) no-repeat right; color:#FFF;}

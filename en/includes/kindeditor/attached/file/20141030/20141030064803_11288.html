@@ -1,0 +1,667 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{template "content","seo"}
+{template "content","head"}
+</head>
+
+<body>
+{template "content","header"}
+    <div class="clear"></div>
+    <div class="main wid990">
+    	<div class="zw_add"><script language="javascript" src="{APP_PATH}caches/poster_js/13.js"></script><!-- 首页通栏1号广告990X70 --></div>
+        <div class="index_box1">
+			{template "content","left_menu"}
+            <div class="index_news fl">
+            	<div class="index_TopNews">
+            		<!-- 各栏目推荐到首页的文章列表 begin -->
+            		<?php $target='target="_blank"'; /*打开方式*/  ?>
+                	<?php $k=0; $list=array(); ?>
+                	{pc:content action="position" posid="2" order="listorder asc" start="0" num="3" return="data"}
+                	{loop $data $key $vo}
+                	<?php $list[$k]['url']=$vo[url]; $list[$k]['title']= $vo[title]; $k++; ?>
+                	{/loop}
+                	{/pc}
+                	<div class="ind_tbox">
+                    	<h3><a href="{$list[0][url]}" {$target}>{str_cut($list[0][title],63,false)}</a></h3>
+                        <div class="ind_tboxLink"><a href="{$list[1][url]}" {$target}>{str_cut($list[1][title],45)}</a>|<a href="{$list[2][url]}" {$target}>{str_cut($list[2][title],45)}</a></div>
+                    </div>
+                    
+                    <?php $k=0; $list=array(); ?>
+                	{pc:content action="position" posid="2" order="listorder asc" start="3" num="3" return="data"}
+                	{loop $data $key $vo}
+                	<?php $list[$k]['url']=$vo[url]; $list[$k]['title']= $vo[title]; $k++; ?>
+                	{/loop}
+                	{/pc}
+                	<div class="ind_tbox">
+                    	<h3><a href="{$list[0][url]}" {$target}>{str_cut($list[0][title],63,false)}</a></h3>
+                        <div class="ind_tboxLink"><a href="{$list[1][url]}" {$target}>{str_cut($list[1][title],45)}</a>|<a href="{$list[2][url]}" {$target}>{str_cut($list[2][title],45)}</a></div>
+                    </div>
+                    
+                    <?php $k=0; $list=array(); ?>
+                	{pc:content action="position" posid="2" order="listorder asc" start="6" num="3" return="data"}
+                	{loop $data $key $vo}
+                	<?php $list[$k]['url']=$vo[url]; $list[$k]['title']= $vo[title]; $k++; ?>
+                	{/loop}
+                	{/pc}
+                	<div class="ind_tbox">
+                    	<h3><a href="{$list[0][url]}" {$target}>{str_cut($list[0][title],63,false)}</a></h3>
+                        <div class="ind_tboxLink"><a href="{$list[1][url]}" {$target}>{str_cut($list[1][title],45)}</a>|<a href="{$list[2][url]}" {$target}>{str_cut($list[2][title],45)}</a></div>
+                    </div>
+                    
+                    <?php $k=0; $list=array(); ?>
+                	{pc:content action="position" posid="2" order="listorder asc" start="9" num="3" return="data"}
+                	{loop $data $key $vo}
+                	<?php $list[$k]['url']=$vo[url]; $list[$k]['title']= $vo[title]; $k++; ?>
+                	{/loop}
+                	{/pc}
+                	<div class="ind_tbox">
+                    	<h3><a href="{$list[0][url]}" {$target}>{str_cut($list[0][title],63,false)}</a></h3>
+                        <div class="ind_tboxLink"><a href="{$list[1][url]}" {$target}>{str_cut($list[1][title],45)}</a>|<a href="{$list[2][url]}" {$target}>{str_cut($list[2][title],45)}</a></div>
+                    </div>
+                    
+                    <?php $k=0; $list=array(); ?>
+                	{pc:content action="position" posid="2" order="listorder asc" start="12" num="3" return="data"}
+                	{loop $data $key $vo}
+                	<?php $list[$k]['url']=$vo[url]; $list[$k]['title']= $vo[title]; $k++; ?>
+                	{/loop}
+                	{/pc}
+                	<div class="ind_tbox">
+                    	<h3><a href="{$list[0][url]}" {$target}>{str_cut($list[0][title],63,false)}</a></h3>
+                        <div class="ind_tboxLink"><a href="{$list[1][url]}" {$target}>{str_cut($list[1][title],45)}</a>|<a href="{$list[2][url]}" {$target}>{str_cut($list[2][title],45)}</a></div>
+                    </div>
+                    <!-- 各栏目推荐到首页的文章列表 end -->
+                </div>
+                <div class="indx_Dbox mgi18">
+                	<div class="ind_Dtop"><h3>中为观察</h3><a href="{$CATEGORYS[280]['url']}" {$target}>更多</a></div>
+                    <div class="clear"></div>
+                    <?php $k=0; $list=array(); ?>
+                	{pc:content action="lists" catid="280" order="id desc" start="0" num="1" return="data"}
+                	{loop $data $key $vo}
+                	<?php $list[$k]['url']=$vo[url]; $list[$k]['title']= $vo[title]; $k++; ?>
+                	{/loop}
+                	{/pc}
+                    <div class="indx_Dinfor"><h3><a href="{$list[0][url]}" target="_blank">{$list[0][title]}</a></h3></div>
+                    <div class="indx_Dlist">
+                    	<ul>
+		                	{pc:content action="lists" catid="280" order="id desc" start="1" num="9" return="data"}
+		                	{loop $data $key $vo}
+		                	<li><a href="{$vo['url']}" target="_blank">{$vo['title']}</a></li>
+		                	{/loop}
+		                	{/pc}
+                        </ul>
+                    </div>
+                </div>
+                <div class="indx_Dbox">
+                	<div class="ind_Dtop"><h3>中为视界</h3><a href="{$CATEGORYS[281]['url']}" {$target}>更多</a></div>
+                    <div class="clear"></div>
+                    <?php $k=0; $list=array(); ?>
+                	{pc:content action="lists" catid="281" order="id desc" start="0" num="1" return="data"}
+                	{loop $data $key $vo}
+                	<?php $list[$k]['url']=$vo[url]; $list[$k]['title']= $vo[title]; $k++; ?>
+                	{/loop}
+                	{/pc}
+                    <div class="indx_Dinfor"><h3><a href="{$list[0][url]}" target="_blank">{$list[0][title]}</a></h3></div>
+                    <div class="indx_Dlist">
+                    	<ul>
+		                	{pc:content action="lists" catid="281" order="id desc" start="1" num="9" return="data"}
+		                	{loop $data $key $vo}
+		                	<li><a href="{$vo['url']}" target="_blank">{$vo['title']}</a></li>
+		                	{/loop}
+		                	{/pc}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="index_report fr">
+            	<div class="focus">
+	      <!--focus begin-->
+            <div id="container" style="width:280px; height:185px;">
+                <div id="slider">
+                	{pc:content action="position" posid="1" order="listorder asc" start="0" num="5" return="data"}
+                	{loop $data $key $vo}
+                	<a href="{$vo[url]}" target="_blank"><img alt="{$vo[title]}" width="280" height="185" src="{$vo[thumb]}"/><span class="slider_title">{$vo[title]}</span></a>
+                	{/loop}
+                	{/pc}
+                </div>
+            </div>
+            <script type="text/javascript">
+            var tv = new SEslider("container", "slider", "tv");
+            tv.Move();
+            </script>
+		<!--focus end-->
+	  			</div>
+	  			<div class="index_tel" style="margin:3px 0;">
+                	{template "content","fu_wu_re_xian"}<!-- 服务热线 -->
+                </div>
+				
+				{template "content","re_men_bao_gao"}<!-- 热门报告 -->
+				
+                {template "content","ding_zhi_chu_ban"}<!-- 定制出版 -->
+            </div>
+        </div>
+        <div class="zw_add"><script language="javascript" src="{APP_PATH}caches/poster_js/14.js"></script><!-- 首页通栏2号广告990X90 --></div>
+		
+		
+        <div class="research_paper">
+        	<div class="re_paperTop">
+            	<h3>研究报告</h3>
+            	<?php $curr_typeid = 59; /*栏目类别：59研究报告，60商业计划书，61可行性报告，62IPO资讯，63兼并重组*/ ?>
+                {template "content","bao_gao_menu"}
+            </div>
+            <div class="clear"></div>
+            <div class="research_list"style="height:696px; overflow:hidden;">
+            	
+            	<?php 
+            		//食品饮料,医药保健,家电家居,能源矿产,石油化工,汽车工业,建筑房产,IT通讯,商业贸易
+					$list_catid=array(70,71,72,73,74,75,77,78,79); //报告栏目ID组（实际是报告）
+					$list_catids2=array(328,329,330,331,332,333,335,336,337); //行业分析栏目ID组（实际是资讯）
+					$target='target="_blank"';
+					foreach($list_catid as $ck=>$cat){
+						$k=0; $list=array();//列表数据集合对象
+						$k2=0; $list2=array();//行业分析--列表数据集合对象
+				?>
+               	{pc:content action="lists" catid="$cat" order="listorder desc,id desc" start="0" num="8" return="data"}
+               	{loop $data $key $vo}
+               	<?php $list[$k]['url']=$vo[url]; $list[$k]['title']= $vo[title]; $list[$k]['thumb']=$vo[thumb]; $list[$k]['description']=$vo[description]; $k++; ?>
+               	{/loop}
+               	{/pc}
+               	
+               	{pc:content action="lists" catid="$list_catids2[$ck]" order="listorder desc,id desc" start="0" num="8" return="data"}
+               	{loop $data $key $vo}
+               	<?php $list2[$k2]['url']=$vo[url]; $list2[$k2]['title']= $vo[title]; $list2[$k2]['thumb']=$vo[thumb]; $list2[$k2]['description']=$vo[description]; $k2++; ?>
+               	{/loop}
+               	{/pc}
+            	<div class="research_box fl <?php if($ck%3==2){ echo 'mgin0'; } ?>">
+                	<div class="re_boxtop">
+                    	<ul>
+                        	<li class="repot_this"><a href="{$CATEGORYS[$cat][url]}" style="float: none;">{$CATEGORYS[$cat]['catname']}</a></li>
+                            <li><a href="{$CATEGORYS[$list_catids2[$ck]][url]}" style="float: none;">行业分析</a></li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="re_Content">
+                    	<div class="show"><?php if(is_array($list[0])){ ?>
+                        	<div class="report_down">
+                    	<div class="report_img fl"><a href="{$list[0][url]}" {$target}><img alt="{$vo[title]}" width="90" height="90" src="{$list[0][thumb]}"/></a></div>
+                        <div class="report_Rcon fr">
+                        	<div class="report_Rtitle"><a href="{$list[0][url]}" {$target}>{$list[0][title]}</a></div>
+                            <div class="report_Rinfor">{$list[0]['description']}<a class="report_more" href="{$list[0][url]}" {$target}>[详细]</a></div>
+                        </div>
+                    </div><?php } ?>
+                    <div class="report_New">
+                    	<ul><?php foreach($list as $k=>$vo){ if($k==0){ continue; } ?>
+                        	<li><a href="{$vo[url]}" {$target}>{$vo[title]}</a></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                        </div>
+                        <div class="hide"><?php if(is_array($list2[0])){ ?>
+                        	<div class="report_down">
+                    			<div class="report_img fl"><a href="{$list2[0][url]}" {$target}><img alt="{$list2[0][title]}" width="90" height="90" src="{$list2[0][thumb]}"/></a></div>
+                        		<div class="report_Rcon fr">
+                        			<div class="report_Rtitle"><a href="{$list2[0][url]}" {$target}>{$list2[0][title]}</a></div>
+                            		<div class="report_Rinfor">{$list2[0]['description']}<a class="report_more" href="{$list2[0][url]}" {$target}>[详细]</a></div>
+                        		</div>
+                    		</div><?php } ?>
+                    		<div class="report_New">
+                    	    	<ul><?php foreach($list2 as $k=>$vo){ if($k==0){ continue; } ?>
+                        	<li><a href="{$vo[url]}" {$target}>{$vo[title]}</a></li>
+                            <?php } ?>
+                        		</ul>
+                    		</div>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+            
+            </div>
+            <div class="clear"></div>
+            <div class="zw_add" style="margin-top:2px;"><script language="javascript" src="{APP_PATH}caches/poster_js/15.js"></script><!-- 首页通栏3号广告990X90 --></div>
+        </div>
+        <div class="feasi_report">
+        	<div class="feas_reLeft fl">
+        		<?php
+            		//可行性报告,商业计划书,IPO咨询
+					$list_typeid=array(61,60,62); //报告类别ID组（实际是报告）
+					$list_catid=array(55,54,56); //报告栏目ID组（实际是报告）
+					$target='target="_blank"';
+					
+					foreach($list_typeid as $ck=>$type){
+						$k=0; $list=array();//列表数据集合对象
+				?>
+               	{pc:get sql="select * from v9_report where typeid = $type order by updatetime desc " num="10" return="data"}
+               	{loop $data $key $vo}
+               	<?php $list[$k]['url']=$vo[url]; $list[$k]['title']= $vo[title]; $list[$k]['thumb']=$vo[thumb]; $list[$k]['description']=$vo[description]; $k++; ?>
+               	{/loop}
+               	{/pc}
+               	
+            	<div class="feas_Lbox">
+                	<div class="feas_Ltop"><h3>{$CATEGORYS[$list_catid[$ck]]['catname']}</h3><a href="{$CATEGORYS[$list_catid[$ck]]['url']}" {$target}>更多</a></div>
+                    <div class="clear"></div>
+                    <div class="feas_Down">
+                    	<div class="feas_Dleft fl">
+                    		<?php if(!empty($list[0])){ ?>
+                        	<div class="report_down">
+                    			<div class="report_img fl"><a href="{$list[0][url]}" {$target}><img alt="{$list[0][title]}" width="90" height="90" src="{$list[0][thumb]}"/></a></div>
+                        		<div class="report_Rcon fr">
+                        			<div class="report_Rtitle"><a href="{$list[0][url]}" {$target}>{$list[0][title]}</a></div>
+                            		<div class="report_Rinfor">{str_cut($list[0][description],90)}<a class="report_more" href="{$list[0][url]}" {$target}>[详细]</a></div>
+                        		</div>
+                    	    </div>
+                    	    <?php } ?>
+                            <?php if(!empty($list[1])){ ?>
+                        	<div class="report_down">
+                    			<div class="report_img fl"><a href="{$list[1][url]}" {$target}><img alt="{$list[1][title]}" width="90" height="90" src="{$list[1][thumb]}"/></a></div>
+                        		<div class="report_Rcon fr">
+                        			<div class="report_Rtitle"><a href="{$list[1][url]}" {$target}>{$list[1][title]}</a></div>
+                            		<div class="report_Rinfor">{str_cut($list[1][description],120)}<a class="report_more" href="{$list[1][url]}" {$target}>[详细]</a></div>
+                        		</div>
+                    	    </div>
+                    	    <?php } ?>
+                       </div>
+                       <div class="feas_Dright fr">
+                       	<div class="report_New">
+                    	<ul><?php $k=0; foreach($list as $vo){ $k++; if($k<3){ continue; } ?>
+                        	<li><a href="{$vo[url]}" {$target}>{$vo[title]}</a></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                       </div>
+                    </div>
+                </div>
+                <?php } ?>
+                
+            </div>
+            <div class="feas_reRight fr">
+            	<div class="ind_manager mgn9">
+                	<div class="ind_Dtop"><h3>经营管理</h3><a href="{$CATEGORYS[474][url]}" {$target}>更多</a></div>
+                    <div class="clear"></div>
+                    <div class="report_New pd5">
+                    	<ul>{pc:content action="lists" catid="474" num="14" siteid="$siteid" order="id desc"}
+                		{loop $data $key $vo}
+                		<li><a href="{$vo[url]}">{$vo[title]}</a></li>
+                		{/loop}
+                		{/pc}</ul>
+                    </div>
+                </div>
+                <div class="ind_plot">
+                	<div class="ind_Dtop"><h3>营销策划</h3><a href="{$CATEGORYS[475][url]}" {$target}>更多</a></div>
+                    <div class="clear"></div>
+                    <div class="report_New pd5">
+                    	<ul>{pc:content action="lists" catid="475" num="13" siteid="$siteid" order="id desc"}
+                		{loop $data $key $vo}
+                		<li><a href="{$vo[url]}">{$vo[title]}</a></li>
+                		{/loop}
+                		{/pc}</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zw_add"><script language="javascript" src="{APP_PATH}caches/poster_js/16.js"></script></script><!-- 首页通栏4号广告990X90 --></div>
+        <div class="area" style="display:none;">
+        	<div class="feas_reLeft fl">
+        	
+        		<?php
+            		//区域产业,区域园区,区域规划,区域投资
+					$list_catid=array(321,323,324,322); //栏目ID组（实际是报告和资讯）
+					$target='target="_blank"';
+					
+					foreach($list_catid as $ck=>$cat){
+						$k=0; $list=array();//列表数据集合对象
+				?>
+               	{pc:content action="lists" catid="$cat" order="listorder desc,id desc" start="0" num="10" return="data"}
+               	{loop $data $key $vo}
+               	<?php $list[$k]['url']=$vo[url]; $list[$k]['title']= $vo[title]; $list[$k]['thumb']=$vo[thumb]; $list[$k]['description']=$vo[description]; $k++; ?>
+               	{/loop}
+               	{/pc}
+               	
+            	<div class="feas_Lbox">
+                	<div class="feas_Ltop"><h3>{$CATEGORYS[$list_catid[$ck]]['catname']}</h3><a href="{$CATEGORYS[$list_catid[$ck]]['url']}" {$target}>更多</a></div>
+                    <div class="clear"></div>
+                    <div class="feas_Down">
+                    	<div class="feas_Dleft fl">
+                    		<?php if(!empty($list[0])){ ?>
+                        	<div class="report_down">
+                    			<div class="report_img fl"><a href="{$list[0][url]}" {$target}><img alt="{$list[0][title]}" width="90" height="90" src="{$list[0][thumb]}"/></a></div>
+                        		<div class="report_Rcon fr">
+                        			<div class="report_Rtitle"><a href="{$list[0][url]}" {$target}>{$list[0][title]}</a></div>
+                            		<div class="report_Rinfor">{str_cut($list[0][description],90)}<a class="report_more" href="{$list[0][url]}" {$target}>[详细]</a></div>
+                        		</div>
+                    	    </div>
+                    	    <?php } ?>
+                            <?php if(!empty($list[1])){ ?>
+                        	<div class="report_down">
+                    			<div class="report_img fl"><a href="{$list[1][url]}" {$target}><img alt="{$list[0][title]}" width="90" height="90" src="{$list[1][thumb]}"/></a></div>
+                        		<div class="report_Rcon fr">
+                        			<div class="report_Rtitle"><a href="{$list[1][url]}" {$target}>{$list[1][title]}</a></div>
+                            		<div class="report_Rinfor">{str_cut($list[1][description],120,'utf-8')}<a class="report_more" href="{$list[1][url]}" {$target}>[详细]</a></div>
+                        		</div>
+                    	    </div>
+                    	    <?php } ?>
+                       </div>
+                       <div class="feas_Dright fr">
+                       	<div class="report_New">
+                    	<ul><?php $k=0; foreach($list as $vo){ $k++; if($k<3){ continue; } ?>
+                        	<li><a href="{$vo[url]}" {$target}>{$vo[title]}</a></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                       </div>
+                    </div>
+                </div>
+                <?php } ?>
+                
+            </div>
+            <div class="feas_reRight fr">
+            	
+            	<?php
+            		//行业数据,市场数据,进出口数据
+					$list_catid=array(317,318,320); //栏目ID组（实际是资讯）
+					$target='target="_blank"';
+					
+					foreach($list_catid as $ck=>$cat){
+				?>
+               	
+            	<div class="index_data1 mg18">
+                	<div class="ind_Dtop"><h3>{$CATEGORYS[$list_catid[$ck]]['catname']}</h3><a href="{$CATEGORYS[$list_catid[$ck]]['url']}" {$target}>更多</a></div>
+                    <div class="clear"></div>
+                    <div class="report_New pd4">
+                    	  <ul>
+                    	  	{pc:content action="lists" catid="$cat" order="id desc" start="0" num="12" return="data"}
+                    	  	{loop $data $key $vo}
+                        	<li><a href="{$vo[url]}" {$target}>{$vo[title]}</a></li>
+                        	{/loop}{/pc}
+                        </ul>
+                    </div>
+                </div>
+                <?php } ?>
+                
+            </div>
+        </div>
+        <!--<div class="zw_add"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=17"></script></div>-->
+        <div class="zw_chnal">
+        	<div class="research_list">
+        		<?php
+            		//中为趋势,中为访谈,中为财富,中为追踪,中为广角,中为商机,中为宏观,中为微观,中为投资
+					$list_catid=array(344,345,346,347,348,349,350,351,352); //栏目ID组（实际是资讯）
+					$target='target="_blank"';
+					
+					foreach($list_catid as $ck=>$cat){
+						$k=0;//单个模块循环次数
+				?>
+        		
+				<div class="research_box fl">
+                	<div class="re_boxtop">
+                    	<ul>
+                        	<li class="repot_this">{$CATEGORYS[$list_catid[$ck]]['catname']}</li>
+                        </ul>
+                        <a href="{$CATEGORYS[$list_catid[$ck]]['url']}" {$target}>更多</a>
+                    </div>
+                    <div class="clear"></div>
+                    {pc:content action="lists" catid="$cat" order="listorder desc" start="0" num="8" return="data"}
+                    {loop $data $key $vo}
+                    <?php if(!empty($vo)){ ?>
+                    <div class="report_down">
+                    	<div class="report_img fl"><a href="{$vo[url]}" {$target}><img alt="{$vo[title]}" width="90" height="90" src="{$vo[thumb]}"/></a></div>
+                        <div class="report_Rcon fr">
+                        	<div class="report_Rtitle"><a href="{$vo[url]}" {$target}>{$vo[title]}</a></div>
+                            <div class="report_Rinfor">{str_cut($vo[description],90)}<a class="report_more" href="{$vo[url]}" {$target}>[详细]</a></div>
+                        </div>
+                    </div><?php break; } ?>{/loop}
+                    
+                    <div class="report_New">
+                    	<ul>{loop $data $key $vo}<?php if($k>0){ ?>
+                        	<li><a href="{$vo[url]}" {$target}>{$vo[title]}</a></li>
+                        	<?php }$k++;  ?>{/loop}
+                        </ul>
+                    </div>{/pc}
+                </div><?php } ?>
+            	
+            </div>
+        </div>
+        <div class="zw_add"><script language="javascript" src="{APP_PATH}caches/poster_js/18.js"></script></script><!-- 首页通栏6号广告990X90 --></div>
+        <div class="indx_project">
+        	<div class="indx_proLeft fl">
+            	<div class="ind_proSelect">
+                	<div class="ind_proName fl">项目中心</div>
+                	<ul>
+                    	<li class="ind_prothis"><a href="{$CATEGORYS[62][url]}" target="_blank">上市项目</a></li>
+                        <li><a href="{$CATEGORYS[63][url]}" target="_blank">投资项目</a></li>
+                        <li><a href="{$CATEGORYS[503][url]}" target="_blank">并购项目</a></li>
+                        <li><a href="{$CATEGORYS[504][url]}" target="_blank">募资项目</a></li>
+                        <li><a href="{$CATEGORYS[505][url]}" target="_blank">融资项目</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+                <div class="ind_proContent">
+                	<div class="show">
+                    	<div class="ind_proForm">
+                        	<table width="652">
+  								<tr height="28">
+    								<th width="26%" style="padding-left:8px;" scope="col">上市公司</th>
+    								<th width="11%" scope="col">股票代码</th>
+    								<th width="12%" scope="col">上市时间</th>
+    								<th width="16%" scope="col">行业类别</th>
+    								<th width="14%" scope="col">交易所</th>
+                                    <th width="12%" scope="col">募资额度</th>
+    								<th width="12%" scope="col">详情</th>
+  								</tr>
+  								{pc:content action="lists" catid="62" num="9" order="listorder asc"}
+  								{loop $data $key $vo}
+  								<tr height="28">
+    								<td width="26%" style="padding-left:8px;" scope="col">{$vo[company]}</td>
+    								<td width="11%" scope="col">{$vo[gupiaodaima]}</td>
+    								<td width="12%" scope="col">{$vo[shangshi_time]}</td>
+    								<td width="16%" scope="col">{$vo[leibie]}</td>
+    								<td width="14%" scope="col">{$vo[jiaoyisuo]}</td>
+                                    <td width="12%" scope="col">{$vo[edu]}</td>
+    								<td width="12%" scope="col"><a href="{$vo[url]}" target="_blank">详情</a></td>
+  								</tr>
+  								{/loop}
+  								{/pc}
+							</table>
+
+                        </div>
+                    </div>
+                    <div class="hide">
+                    	<div class="ind_proForm">
+                        	<table width="652">
+  								<tr height="28">
+    								<th width="80" style="padding-left:8px;" scope="col">投资时间</th>
+    								<th width="78" scope="col">行业类别</th>
+    								<th width="182" scope="col">受资企业</th>
+    								<th width="182" scope="col">投资企业</th>
+    								<th width="80" scope="col">投资额度</th>
+    								<th scope="col">详情</th>
+  								</tr>
+  								{pc:content action="lists" catid="63" num="9" order="listorder asc"}
+  								{loop $data $key $vo}
+  								<tr height="28">
+    								<td  width="80" style="padding-left:8px;">{$vo[touzi_time]}</td>
+                                    <td  width="78">{$vo[leibie]}</td>
+                                    <td  width="182">{$vo[company]}</td>
+                                    <td  width="182">{$vo[tcompany]}</td>
+                                    <td  width="80">{$vo[edu]}</td>
+                                    <td><a href="{$vo[url]}" target="_blank">详情</a></td>
+  								</tr>
+  								{/loop}
+  								{/pc}
+							</table>
+
+                        </div>
+                    </div>
+                    <div class="hide">
+                    	<div class="ind_proForm">
+                        	<table width="652">
+  								<tr height="28">
+    								<th width="25%" style="padding-left:8px;" scope="col">被并购企业</th>
+    								<th width="25%" scope="col">并购企业</th>
+    								<th width="11%" scope="col">并购股权</th>
+    								<th width="10%" scope="col">行业类别</th>
+    								<th width="13%" scope="col">并购完成时间</th>
+    								<th scope="12%">详情</th>
+  								</tr>
+  								{pc:content action="lists" catid="503" num="9" order="listorder asc"}
+  								{loop $data $key $vo}
+  								<tr height="28">
+    								<td  width="25%" style="padding-left:8px;">{$vo[bcompany]}</td>
+                                    <td  width="25%">{$vo[company]}</td>
+                                    <td  width="11%">{$vo[guquan]}</td>
+                                    <td  width="10%">{$vo[leibie]}</td>
+                                    <td  width="13%">{$vo[binggou_time]}</td>
+                                    <td width="12%"><a href="{$vo[url]}" target="_blank">详情</a></td>
+  								</tr>
+  								{/loop}
+  								{/pc}
+							</table>
+
+                        </div>
+                    </div>
+                    <div class="hide">
+                    	<div class="ind_proForm">
+                        	<table width="652">
+  								<tr height="28">
+    								<th width="36%" style="padding-left:8px;" scope="col">发起基金名称</th>
+    								<th width="16%" scope="col">基金管理机构</th>
+    								<th width="12%" scope="col">基金性质</th>
+    								<th width="12%" scope="col">募资额度</th>
+    								<th width="12%" scope="col">成立时间</th>
+    								<th width="12%" scope="col"><a href="">详情</a></th>
+  								</tr>
+  								{pc:content action="lists" catid="504" num="9" order="listorder asc"}
+  								{loop $data $key $vo}
+  								<tr height="28">
+    								<td  width="30%" style="padding-left:8px;">{$vo[name]}</td>
+                                    <td  width="22%">{$vo[jigou]}</td>
+                                    <td  width="12%">{$vo[xingzhi]}</td>
+                                    <td  width="12%">{$vo[edu]}</td>
+                                    <td  width="12%">{$vo[chengli_time]}</td>
+                                    <td  width="12%"><a href="{$vo[url]}" target="_blank">详情</a></td>
+  								</tr>
+  								{/loop}
+  								{/pc}
+							</table>
+
+                        </div>
+                    </div>
+                    <div class="hide">
+                    	<div class="ind_proForm">
+                        	<table width="652">
+  								<tr height="28">
+    								<th width="26%" style="padding-left:8px;" scope="col">项目名称</th>
+    								<th width="11%" scope="col">地区</th>
+    								<th width="12%" scope="col">投资类型</th>
+    								<th width="16%" scope="col">所属行业</th>
+    								<th width="14%" scope="col">融资金额</th>
+                                    <th width="12%" scope="col">时间</th>
+    								<th width="12%" scope="col">详情</th>
+  								</tr>
+  								{pc:content action="lists" catid="505" num="9" order="listorder asc"}
+  								{loop $data $key $vo}
+  								<tr height="28">
+    								<td  width="80" style="padding-left:8px;">{$vo[name]}</td>
+                                    <td  width="78">{$vo[diqu]}</td>
+                                    <td  width="182">{$vo[leixing]}</td>
+                                    <td  width="182">{$vo[hangye]}</td>
+                                    <td  width="80">{$vo[jine]}</td>
+                                    <td  width="80">{$vo[rongzi_time]}</td>
+                                    <td><a href="{$vo[url]}" target="_blank">详情</a></td>
+  								</tr>
+  								{/loop}
+  								{/pc}
+							</table>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="zw_parter">
+                	<div class="zw_parSelect">
+                    <ul>
+                    	<li class="ind_prothis">中为企业名录</li>
+                        <li>企业排名</li>
+                    </ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="zw_partContent">
+                    	<div class="show">
+                        	<div class="zw_partForm">
+								<ul style="width:652px">
+									{pc:content action="lists" catid="373" num="20" order="id desc"}
+									{loop $data $key $vo}
+									<li style="width:326px; float:left; height:28px;">　<a href="{$vo[url]}" target="_blank">{$vo['title']}</a></li>
+									{/loop}
+									{/pc}
+								</ul>
+
+                            </div>
+                        </div>
+                        <div class="hide">
+                        	<div class="zw_partForm">
+                            	<ul style="width:652px">
+									{pc:content action="lists" catid="524" num="20" order="listorder asc"}
+									{loop $data $key $vo}
+									<li style="width:326px; float:left; height:28px;">　<a href="{$vo[url]}" target="_blank">{$vo['title']}</a></li>
+									{/loop}
+									{/pc}
+								</ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="indx_proRight fr">
+            	<div class="parter_people">
+                	<div class="indx_people">
+                	<div class="ind_Dtop"><h3>中为人物</h3><a href="{$CATEGORYS[509][url]}" {$target}>更多</a></div>
+                    <div class="clear"></div>
+                    <div class="parter_img">
+                    	<ul>{pc:content action="lists" catid="510" num="3" order="id desc"}
+                    		{loop $data $key $vo}
+                        	<li><a href="{$vo[url]}" target="_blank"><img alt="{$vo[title]}" width="100" height="100" src="{$vo[thumb]}"/><span>{$vo[name]}</span></a></li>
+                            {/loop}
+                            {/pc}
+                        </ul>
+                    </div>
+                    <div class="indx_Dlist">
+                    	<ul>{pc:content action="lists" catid="511" num="5" order="id desc"}
+                    		{loop $data $key $vo}
+                        	<li><a href="{$vo[url]}" target="_blank">{$vo[title]}</a></li>
+                            {/loop}
+                            {/pc}
+                        </ul>
+                    </div>
+                </div>
+                </div>
+                <div class="zw_test">
+                	<div class="indx_technogy">
+                	<div class="ind_Dtop"><h3>中为调研</h3><a href="{$CATEGORYS[473][url]}" {$target}>更多</a></div>
+                    <div class="clear"></div>
+                    <div class="indx_Dlist">
+                    	<ul>{pc:content action="lists" catid="473" num="11" siteid="$siteid" order="id desc"}
+                		{loop $data $key $vo}
+                		<li><a href="{$vo[url]}">{$vo[title]}</a></li>
+                		{/loop}
+                		{/pc}</ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="love_link">
+        	<div class="link_name fl">友情链接</div>
+            <div class="link_list fl">
+            	{pc:link  action="type_list" typeid="0" siteid="1" linktype="1" order="listorder DESC" num="800" return="pic_link"} 
+            	{loop $pic_link $v}
+            	<a href="{$v['url']}" title="{$v['name']}" target="_blank">{$v['name']}</a>
+				{/loop}
+				{/pc}
+            </div>
+        </div>
+        <!--<div class="zw_add"><script language="javascript" src="{APP_PATH}index.php?m=poster&c=index&a=show_poster&id=25"></script></div>-->
+    </div>
+    {template "content","footer"}
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="themes/default/css/style.css"/>
+<link rel="shortcut icon" href="gsp_favicon.ico" />
+</head>
+<body>
+{include file="header.html"}
+    <div class="body">
+    	<div class="body_c wd1200">
+        	<div class="chnal_po">
+            	<div class="chnal fl">
+            	   {foreach from=$art_cat_list item="v"}
+                	<a {if $cat_id eq $v.cat_id}class="cur"{/if} href="list-{$v.cat_id}.html" title="{$v.cat_name}">{$v.cat_name}</a>
+                   {/foreach}	
+                </div>
+                <div class="position fr">
+                	{$ur_here}
+                </div>
+            </div>
+            <div class="body_show cl">
+            	<div class="news_list">
+                	<ul>
+                	    {foreach from="$artciles_list" item="v"}
+                    	<li>
+                        	<div class="news_img fl">
+                            	<a href="{$v.url}" title="{$v.title}"><img width="220" height="150" alt="{$v.title}" src="{$v.file_url}"/></a>
+                            </div>
+                            <div class="news_for fr">
+                            	<div class="news_fname">
+                                	<a href="{$v.url}" title="{$v.title}">{$v.title}</a>
+                                </div>
+                                <div class="news_infor">
+                                	<span class="news_Ftime">{$v.add_time}</span>
+                                    <span class="news_Fpeo">Issuer：{$v.author}</span>
+                                </div>
+                                <div class="news_intro">{$v.intro}</div>
+                            </div>
+                        </li>
+                        {/foreach} 
+                    </ul>
+                </div>
+                <div class="page cl">{include file="page.html"}</div>
+            </div>
+        </div>
+    </div>
+ {include file="footer.html"}
+</body>
+</html>
