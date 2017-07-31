@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+		<meta name = "viewport" content ="initial-scale=1.0,maximum-scale=1,user-scalable=no"><!-- 控制缩放比例 -->
+		<meta name="format-detection" content="telphone=no, email=no"/><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--  不让百度转码 -->
+		<title>{$page_title}</title>
+		<meta name="Keywords" content="{$keywords}" />
+		<meta name="Description" content="{$description}" />
+		<link rel="shortcut icon" href="../gsp_favicon.ico" />
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="templates/css/reset.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/base.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/layout.css?v=a11">
+		<!-- js -->
+		<script type="text/javascript" src="templates/js/jquery.min.js?v=a10"></script>
+		<script type="text/javascript" src="templates/js/custom.js?v=a10"></script>
+		<!-- banner -->
+		<link rel="stylesheet" type="text/css" href="templates/js/swiper/swiper.min.css">
+		<script type="text/javascript" src="templates/js/swiper/swiper.jquery.min.js"></script>
+	</head>
+	<body>
+		
+		<!-- Header -->
+		<div class="Header">
+			<div style="height:50px;"></div>
+			<header>
+				<div class="page-header">
+					<a href="user.html" class="page-return"></a>
+					<div class="page-name">收货地址</div>
+				</div>
+			</header>
+		</div>
+		
+		
+		<!-- Contain -->
+		<div>
+		<form action="user.html" method="post" onsubmit="return checkfm(this)">
+			<div class="shopCart-box">
+				<div class="sc-block sc-address">
+					<div class="adr-block">
+						<div class="title">收货人姓名</div>
+						<input type="text" placeholder="请使用真实姓名，长度不超过12个字" value="{$consignee_list.consignee}" name="consignee" class="adr-txt"/>
+					</div>
+					<div class="adr-block">
+						<div class="title">手机号码</div>
+						<input type="text" placeholder="手机号码必须填写" class="adr-txt" value="{$consignee_list.mobile}" name="mobile"/>
+					</div>
+					<div class="adr-block">
+						<div class="title">电话号码</div>
+						<input type="text" placeholder="电话号码选填" class="adr-txt" value="{$consignee_list.tel}" name="tel"/>
+					</div>
+					<div class="adr-block">
+						<div class="title">所在地区</div>
+						<select name="province" id="province">
+                                    	<option value="0">请选择省份</option>
+                                    	{foreach from=$province_list item=v}
+                                        <option value="{$v.region_id}" {if $consignee_list.province eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                                        {/foreach} 
+						</select>
+						<select name="city" id="city">
+                                    	<option value="0">请选择城市</option>
+                                    	{foreach from=$city_list item=v}
+                                        <option value="{$v.region_id}" {if $consignee_list.city eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                                        {/foreach} 
+						</select>
+						<select name="district" id="district">
+                                    	<option value="0">请选择地区</option>
+                                    	{foreach from=$district_list item=v}
+                                        <option value="{$v.region_id}" {if $consignee_list.district eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                                        {/foreach} 
+						</select>
+					</div>
+					<div class="adr-block">
+						<div class="title">详细地址</div>
+						<textarea type="text" placeholder="无需重复填写省市区，小于75个字" class="adr-txt" name="address">{$consignee_list.address}</textarea>
+					</div>
+					<input type="submit" value="保存新地址" class="adr-btn"/>
+					<input type="hidden" name="address_id" value="{$consignee_list.address_id}"/>
+                    <input type="hidden" value="act_edit_address" name="act">					
+				</div>
+			</div>
+			</form>
+		</div>
+{include file="footer.html"}
+	</body>
+</html>
+<script type="text/javascript">
+function checkfm(obj){
+	var consignee=obj.consignee.value;
+	var mobile=obj.mobile.value;
+	var province=obj.province.value;
+	var city=obj.city.value;
+	var address=obj.address.value;
+	if(consignee.length<1){
+		alert('收货人姓名不能为空！');
+		return false;
+	}
+	if(consignee.length<1){
+		alert('收货人姓名不能为空！');
+		return false;
+	}	
+	if(!(/^1[3|4|5|8][0-9]\d{8}$/.test(mobile))){
+		alert('手机号码不正确！');
+		return false;
+    }
+	if(province.length<1){
+		alert('请先选择省份！');
+		return false;
+    }	
+	if(city.length<1){
+		alert('请先选择城市！');
+		return false;
+    }	
+	if(address.length<1){
+		alert('地址不能为空！');
+		return false;
+    }	   
+}
+	$(function(){
+ 		$('#province').change(function(){
+			var id=parseInt($(this).val());
+			$('#city').html('<option value="0">请选择城市</option>');
+			$('#district').html('<option value="0">请选择地区</option>');
+			if(id>0){
+				$.post("user.html?act=ajax_city",{id:id,type:1}, function(msg){
+					 $('#city').html(msg);
+			   });
+			}
+ 	 	});
+ 		$('#city').change(function(){
+			var id=parseInt($(this).val());
+			$('#district').html('<option value="0">请选择地区</option>');
+			if(id>0){
+				$.post("user.html?act=ajax_city",{id:id}, function(msg){
+					if(msg !=''){
+						$('#district').show();
+					  $('#district').html(msg);
+					}else{
+						$('#district').hide();
+					}
+			   });
+			}
+ 	 	}); 
+		$('.tk_close').click(function(){
+			
+			$('.yy').hide()
+			$(this).parents('.tk2').hide()
+			
+			})
+		
+		$('.mem_adRepl').click(function(){
+			
+			$('.yy').show()
+			$('.tk2').show()
+			
+			})	
+		
+		})
+</script>

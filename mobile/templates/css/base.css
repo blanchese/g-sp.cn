@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*通用*/
+.clearfix{overflow:hidden;_zoom:1;}
+.r{float:right;}
+.l{float:left;}
+p{line-height:25px;}
+.gray{color:#888888 !important;}
+
+
+
+/*flex*/
+.flex{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+.flex-v{-webkit-box-orient:vertical;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}
+.flex-1{-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;}
+.flex-2{-webkit-box-flex:2;-webkit-flex:2;-ms-flex:2;flex:2;}
+.flex-3{-webkit-box-flex:3;-webkit-flex:3;-ms-flex:3;flex:3;}
+.flex-align-center{-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;}
+.flex-pack-center{-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+.flex-pack-justify{-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}
+.vertical-container{display: -webkit-flex;display: flex;-webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;}
+
+
+
+/*通用导航*/
+.common-nav{padding:0px 3%;height:auto;overflow:hidden;border-bottom:1px solid #dbdbdb;position:relative;}
+.common-nav ul>li{width:33.333%;margin-top:5px;text-align:center;float:left;}
+.common-nav ul>li>a{display:inline-block;padding:10px 2px;color:#555555;font-size:16px;border-bottom:2px solid #f0f0f0;}
+.common-nav ul>li.cur a{border-bottom:2px solid #378ac5;}
+
+
+/*分页*/
+.page-box{padding:20px 0;position:relative;left:0px;top:0px;text-align:center;}
+.page-box .page-btn{display:inline-block;padding:7px 20px;margin:0 5px;border:1px solid #c0c0c0;color:#555555;background:url(../images/page-btn.png) no-repeat center;background-size:7px;}
+.page-btn.pb-prev{background-position:8px 11px;}
+.page-btn.pb-next{background-position:67px -15px;}
+
+
+/*适配*/
+html  {
+	 font-size  :  20px ;
+}
+
+@media only screen and (min-width:401px){
+	html{font-size:24px !important;}
+}
+
+@media only screen and (min-width:428px){
+	html{font-size:26.75px !important;}
+}
+
+@media only screen and (min-width:481px){
+	html{font-size:30px !important;}
+}
+
+@media only screen and (min-width:569px){
+	html{font-size:35px !important;}
+}
+
+@media only screen and (min-width:641px){
+	html{font-size:40px !important;}
+}
+
+/*flex--共用*/
+.sc-block, .sc-cb, .sc-d-b, .uo-d-b{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+.sc-detail, .sc-info, .uo-detail{-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

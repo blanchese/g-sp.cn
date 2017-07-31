@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+		<meta name = "viewport" content ="initial-scale=1.0,maximum-scale=1,user-scalable=no"><!-- 控制缩放比例 -->
+		<meta name="format-detection" content="telphone=no, email=no"/><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--  不让百度转码 -->
+		<title>{$page_title}</title>
+		<meta name="Keywords" content="{$keywords}" />
+		<meta name="Description" content="{$description}" />
+		<link rel="shortcut icon" href="../gsp_favicon.ico" />
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="templates/css/reset.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/base.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/layout.css?v=a11">
+		<!-- js -->
+		<script type="text/javascript" src="templates/js/jquery.min.js?v=a10"></script>
+		<script type="text/javascript" src="templates/js/custom.js?v=a10"></script>
+		<!-- banner -->
+		<link rel="stylesheet" type="text/css" href="templates/js/swiper/swiper.min.css">
+		<script type="text/javascript" src="templates/js/swiper/swiper.jquery.min.js"></script>
+		
+	</head>
+	<body>
+		
+		<!-- Header -->
+		<div class="Header">
+			<div style="height:50px;"></div>
+			<header>
+				<div class="page-header">
+					<a href="product-{$goods.cat_id}.html" class="page-return"></a>
+					<div class="header-nav">
+						<a href="javascript:;" class="nav-more"></a>
+					</div>
+					<div class="nav-box">
+						<div class="nav-block" style="display:none;">
+							{include file="nav.html"}
+						</div>
+					</div>
+					<div class="page-name">{$goods.goods_name}</div>
+				</div>
+			</header>
+		</div>
+		
+		
+		<!-- Contain -->
+		<div>
+		
+			<!-- 产品banner -->
+			<div class="swiper-container proInfo-banner">
+				<div class="swiper-wrapper">
+				   {foreach from=$pictures item="v" key="k"}
+					<div class="swiper-slide">
+						<a href="javascript:;"><img src="../{$v.img_url}"/></a>
+					</div>
+					{/foreach} 
+				</div>
+				<div class="swiper-pagination proInfo-pagination"></div>
+			</div>
+			<script>
+				var indexProSwiper = new Swiper('.proInfo-banner', {
+					pagination: '.proInfo-pagination'
+				});
+			</script>
+			
+			<!-- 详细信息 -->
+			<div class="pi-info">
+				<div class="pi-block">
+					<div class="pi-name">{$goods.goods_name}</div>
+					<div class="pi-price">
+						<span class="price-cur">￥{$goods.shop_price}元</span>
+						<span class="price-cost">￥{$goods.market_price}元</span>
+					</div>
+				</div>
+				<div class="pi-block">
+					<table cellpadding="0" cellspacing="0" class="pi-table">
+						<thead>
+							<tr>
+								<th>起批量(个)</th>
+								<th>价格</th>
+							</tr>
+						</thead>
+						<tbody>
+							{foreach from=$volume_price_list item=price_list key=price_key}
+							<tr>
+								<td>{$price_list.number_str}</td>
+								<td>{$price_list.format_price}</td>
+							</tr>
+                        	{/foreach}        
+						</tbody>
+					</table>
+				</div>
+				<div class="pi-block"><!--
+					<div class="pi-select">
+						<div class="title">颜色分类</div>
+						<ul class="ps-list">
+							<li class="cur">
+								<a href="javascript:;">白色</a>
+							</li>
+							<li>
+								<a href="javascript:;">黑色</a>
+							</li>
+							<li>
+								<a href="javascript:;">红色</a>
+							</li>
+						</ul>
+					</div>	
+					--><div class="pi-num">
+						<span class="title">数量</span>
+						<a class="num-btn nb-min" href="javascript:;"></a>
+						<input type="text" class="num-text" value="1" pattern="[0-9]*" />
+						<a class="num-btn nb-plus" href="javascript:;"></a>
+					</div>
+					<a href="javascript:;" class="buy-btn" onclick="addToCart({$id},1)">立即购买</a>
+					<a href="javascript:;" class="shop-btn" onclick="addToCart({$id},0)">加入购物车</a>
+				</div>
+				<div class="pi-block">
+					<div class="pi-detail">查看参数及图文详细</div>
+					<div class="detail-block">
+						{$goods.goods_desc}
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+	{include file="footer.html"}
+	</body>
+</html>
+<script type="text/javascript" src="templates/js/jquery.json-1.3.js"></script>
+<script>
+function addToCart(goodsId,type)
+{
+  var goods        = new Object();
+  var number       = parseInt($('.num-text').val());
+  var quick		   = 1;
+  if(number<1){ number=1; }
+ 
+  goods.quick    = quick;
+  goods.goods_id = goodsId;
+  goods.number   = number;
+  goods.parent   = 0;
+  $.post("cart.html?step=add_to_cart", { goods: $.toJSON(goods)},function(result){
+	  if (result.error > 0){
+		    // 如果需要缺货登记，跳转
+		    if (result.error == 2){
+		      alert('对不起，商品库存不足!');
+		    }else{
+		      alert(result.message);
+		    }
+	  }else{
+	    if(type>0){
+			location.href='cart.html?step=cart';
+		}else{
+			alert('添加成功！');
+		}
+	  }
+  },'JSON');
+  
+}
+</script>

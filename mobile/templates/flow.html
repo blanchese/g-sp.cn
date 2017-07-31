@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+		<meta name = "viewport" content ="initial-scale=1.0,maximum-scale=1,user-scalable=no"><!-- 控制缩放比例 -->
+		<meta name="format-detection" content="telphone=no, email=no"/><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--  不让百度转码 -->
+		<title>{$page_title}</title>
+		<meta name="Keywords" content="{$keywords}" />
+		<meta name="Description" content="{$description}" />
+		<link rel="shortcut icon" href="../gsp_favicon.ico" />
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="templates/css/reset.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/base.css?v=a12">
+		<link rel="stylesheet" type="text/css" href="templates/css/layout.css?v=a11">
+		<!-- js -->
+		<script type="text/javascript" src="templates/js/jquery.min.js?v=a10"></script>
+		<script type="text/javascript" src="templates/js/custom.js?v=a10"></script>
+		<!-- banner -->
+		<link rel="stylesheet" type="text/css" href="templates/js/swiper/swiper.min.css">
+		<script type="text/javascript" src="templates/js/swiper/swiper.jquery.min.js"></script>
+		
+	</head>
+	<body class="orderPay-page">
+	{if $step eq 'cart'}	
+		<!-- Header -->
+		<div class="Header">
+			<div style="height:50px;"></div>
+			<header>
+				<div class="page-header">
+					<a href="product.html" class="page-return"></a>
+					<div class="header-nav">
+						<span class="h-opera">编辑</span>
+					</div>
+					<div class="page-name">购物车</div>
+				</div>
+			</header>
+		</div>
+		
+		
+		<!-- Contain -->
+		<div>
+		
+			<div class="shopCart-box">
+			   {foreach from=$goods_list item="v"}
+				<div class="sc-block">
+					<div class="sc-cb">
+						<input type="checkbox" class="cb rec_check" value="{$v.rec_id}"/>
+					</div>
+					<div class="sc-detail">
+						<div class="sc-d-b">
+							<div class="sc-img">
+								<a href="pro_view-{$v.goods_id}.html">
+									<img src="{$v.goods_thumb}" alt="{$v.goods_name}"/>
+								</a>
+							</div>
+							<div class="sc-info">
+								<!-- 编辑框 -->
+								<div class="sc-i-edit" style="display:none;">
+									<a class="edit-btn edit-min" href="javascript:;"></a>
+									<input type="text" class="edit-total" value="{$v.goods_number}" name="{$v.rec_id}" pattern="[0-9]*" readonly="true">
+									<a class="edit-btn edit-plus" href="javascript:;"></a>
+									<a href="cart.html?step=drop_goods&id={$v.rec_id}" class="edit-delete" title="删除"></a>
+								</div>
+								<!-- 显示框 -->
+								<a class="sc-i-show" href="pro_view-{$v.goods_id}.html">
+									<span class="sc-i-name">{$v.goods_name}</span>
+								</a>
+								<div class="pro-price">
+									<span class="price-cur"><font class="price_td{$v.rec_id}">{$v.goods_price}</font> <em class="sc-num">{$v.goods_number}</em></span><!-- 现价 -->
+									<span class="price-cost">{$v.market_price}</span><!-- 原价 -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{/foreach}
+				
+				<div class="sc-pay">
+					<div class="sc-ac">
+						<input type="checkbox" class="ac"/><label>全选</label>
+					</div>
+					<div class="sc-ac" style="margin-left:15px;">
+					<a href="javascript:;" id="buy_Acfor">删除选中</a>
+					</div>
+					<div class="pay-money">
+						<div class="pay-total"><!-- 总计 -->
+							总计：<em id="buy_Amax">{$total.goods_price}</em>
+						</div>
+						<div class="pay-fa"><!-- 优惠 -->
+							<span>原价总计<em id="tmp">{$total.market_price}</em></span>
+							<span>优惠：<em id="sav">{$total.saving}</em></span>
+						</div>
+						<a class="pay-btn" href="cart.html?step=checkout">下一步</a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	{elseif $step eq 'consignee'}	
+		<!-- Header -->
+		<div class="Header">
+			<div style="height:50px;"></div>
+			<header>
+				<div class="page-header">
+					<a href="cart.html" class="page-return"></a>
+					<div class="page-name">填写订单信息</div>
+				</div>
+			</header>
+		</div>
+		
+		
+		<!-- Contain -->
+		<div>
+		   <form action="cart.html" method="post" onsubmit="return checkaddress(this)">
+			<div class="shopCart-box">
+				<div class="sc-block sc-address">
+					<div class="title">收货地址</div>
+					<div class="adr-block">
+						<div class="title">收货人姓名</div>
+						<input type="text" placeholder="请使用真实姓名，长度不超过12个字" class="adr-txt" value="{$consignee_list.consignee}" name="consignee"/>
+					</div>
+					<div class="adr-block">
+						<div class="title">手机号码</div>
+						<input type="text" placeholder="手机号码、电话号码必须填一项" class="adr-txt" name="mobile" value="{$consignee_list.mobile}"/>
+					</div>
+					<div class="adr-block">
+						<div class="title">所在地区</div>
+						<select name="province" id="province">
+							<option value="0">请选择省份</option>
+                            {foreach from=$sheng_list item="v"}
+                            <option value="{$v.region_id}" {if $consignee_list.province eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                            {/foreach}
+						</select>
+						<select name="city" id="city">
+                             <option value="0">请选择城市</option>
+                             {foreach from=$city_list item="v"}
+                             <option value="{$v.region_id}" {if $consignee_list.city eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                             {/foreach}
+						</select>
+						<select name="district" id="district">
+                             <option value="0">请选择地区</option>
+                             {foreach from=$district_list item="v"}
+                             <option value="{$v.region_id}" {if $consignee_list.district eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                             {/foreach}
+						</select>
+					</div>
+					<div class="adr-block">
+						<div class="title">详细地址</div>
+						<textarea type="text" placeholder="无需重复填写省市区，小于75个字" class="adr-txt"  name="address">{$consignee_list.address}</textarea>
+					</div>
+					<input type="submit" value="保存地址" class="adr-btn"/>
+					<input type="hidden" name="step" value="consignee"/>
+                    <input type="hidden" name="address_id" value="{$consignee_list.address_id}"/>
+				</div>
+			</div>
+		 </form>
+	  </div>
+	{elseif $step eq 'checkout'}
+		<!-- Header -->
+		<div class="Header">
+			<div style="height:50px;"></div>
+			<header>
+				<div class="page-header">
+					<a href="cart.html" class="page-return"></a>
+					<div class="page-name">填写订单信息</div>
+				</div>
+			</header>
+		</div>
+		
+		
+		<!-- Contain -->
+		<div>
+		
+		   <form action="cart.html" method="post" onsubmit="return checkaddress(this)">
+			<div class="shopCart-box">
+				<div class="sc-block sc-address">
+					<div class="title">收货地址</div>
+					<div class="adr-block">
+						<div class="title">收货人姓名</div>
+						<input type="text" placeholder="请使用真实姓名，长度不超过12个字" class="adr-txt" value="{$consignee.consignee}" name="consignee"/>
+					</div>
+					<div class="adr-block">
+						<div class="title">手机号码</div>
+						<input type="text" placeholder="手机号码、电话号码必须填一项" class="adr-txt" name="mobile" value="{$consignee.mobile}"/>
+					</div>
+					<div class="adr-block">
+						<div class="title">所在地区</div>
+						<select name="province" id="province">
+							<option value="0">请选择省份</option>
+                            {foreach from=$sheng_list item="v"}
+                            <option value="{$v.region_id}" {if $consignee.province eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                            {/foreach}
+						</select>
+						<select name="city" id="city">
+                             <option value="0">请选择城市</option>
+                             {foreach from=$city_list item="v"}
+                             <option value="{$v.region_id}" {if $consignee.city eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                             {/foreach}
+						</select>
+						<select name="district" id="district">
+                             <option value="0">请选择地区</option>
+                             {foreach from=$district_list item="v"}
+                             <option value="{$v.region_id}" {if $consignee.district eq $v.region_id}selected="selected"{/if}>{$v.region_name}</option>
+                             {/foreach}
+						</select>
+					</div>
+					<div class="adr-block">
+						<div class="title">详细地址</div>
+						<textarea type="text" placeholder="无需重复填写省市区，小于75个字" class="adr-txt"  name="address">{$consignee.address}</textarea>
+					</div>
+					<input type="submit" value="修改地址" class="adr-btn"/>
+					<input type="hidden" name="step" value="consignee"/>
+                    <input type="hidden" name="address_id" value="{$consignee.address_id}"/>
+				</div>
+			</div>
+		 </form>
+			<div class="shopCart-box">
+			   {foreach from=$goods_list item="v"}
+				<div class="sc-block">
+					<div class="sc-detail">
+						<div class="sc-d-b">
+							<div class="sc-img">
+								<a href="javascript:;">
+									<img src="{$v.goods_thumb}" alt="{$v.goods_name}"/>
+								</a>
+							</div>
+							<div class="sc-info">
+								<!-- 显示框 -->
+								<a class="sc-i-show">
+									<span class="sc-i-name">{$v.goods_name}</span>
+								</a>
+								<div class="pro-price">
+									<span class="price-cur">{$v.formated_goods_price} <em class="sc-num">{$v.goods_number}</em></span><!-- 现价 -->
+									<span class="price-cost">{$v.formated_market_price}</span><!-- 原价 -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			   {/foreach}
+			   <form method="post" action="cart.html" id="cartfm" name="cartfm">
+				<div class="sc-block sc-payblock">
+					<div class="title">选择支付方式</div>
+					<span class="pay-hint">支付平台：推荐使用支付宝。支持所有银行和支付宝，无需开通网银。</span>
+					<div class="pay-mode">
+						{foreach from=$payment_list item="v"}
+						<div class="pm-block">
+							<input type="radio" class="pm-radio" name="payment" value="{$v.pay_id}"/>
+							<img src="templates/images/pay-2.png"/>
+						</div>
+						{/foreach}
+					</div>
+				</div>
+				<div class="adr-block">
+					<div class="title">订单备注</div>
+					<textarea type="text" placeholder="订单备注，如颜色、型号等 " class="adr-txt" name="postscript"></textarea>
+				</div>
+				<input type="hidden" name="step" value="done"/>
+                <input type="hidden" name="shipping" value="3"/>
+			  </form>
+			  
+				<div class="sc-pay">
+					<div class="pay-money">
+						<div class="pay-total"><!-- 总计 -->
+							总计：<em>{$total.formated_goods_price}</em>
+						</div>
+						<div class="pay-fa"><!-- 优惠 -->
+							<span>原价总计<em>{$total.formated_market_price} </em></span>
+							<span>优惠：<em>{$total.formated_saving} </em></span>
+						</div>
+						<a class="pay-btn" href="javascript:;" id="buysub">下一步</a>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	{elseif $step eq 'done'}
+		<!-- Header -->
+		<div class="Header">
+			<div style="height:50px;"></div>
+			<header>
+				<div class="page-header">
+					<a href="javascript:;" class="page-return"></a>
+					<div class="page-name">{if $order.pay_status eq 2}订单支付{else}订单提交{/if}</div>
+				</div>
+			</header>
+		</div>
+		
+		
+		<!-- Contain -->
+		<div>
+			
+			<div class="order-pay vertical-container">
+				<div class="op-block">
+					<img src="templates/images/pay-suc.png" alt=""/>
+					<div class="op-state">
+						<div class="state">{if $order.pay_status eq 2}订单已支付成功！{else}订单已提交成功！{/if}</div>
+						<div class="num">订单编号：<em>{$order.order_sn} </em></div>
+						<div class="money">订单金额：<em>{$total.amount_formated}</em></div>
+						<div class="money">支付方式：<em>{$order.pay_name}</em></div>
+						<a class="op-btn" href="user.html">进入会员中心</a><!--
+						{if $pay_online}
+						<div class="money">{$pay_online}</div>
+						{/if}
+					--></div>
+				</div>
+
+			</div>
+			
+		</div>
+		
+	{/if}	
+		
+		
+		{include file="footer.html"}
+	</body>
+</html>
+<script>
+$(function(){
+	//购物车--加减
+	$(".edit-btn.edit-min").bind("click",function(){//减
+		var numTxt = parseInt($(this).siblings(".edit-total").attr("value"));
+		var id=$(this).siblings(".edit-total").attr("name")
+		if(numTxt>1){
+			$(this).siblings(".edit-total").attr("value",numTxt-1);
+			$(this).parents(".sc-info").find(".sc-num").html(numTxt-1);
+			ajax_update_cart(id,numTxt-1);
+		}else{
+			return false;
+		}
+	});
+		$('#province').change(function(){
+			var id=parseInt($(this).val());
+			$('#city').html('<option value="0">请选择城市</option>');
+			$('#district').html('<option value="0">请选择地区</option>');
+			if(id>0){
+				$.post("user.html?act=ajax_city",{id:id,type:1}, function(msg){
+					 $('#city').html(msg);
+			   });
+			}
+ 	 	});
+ 		$('#city').change(function(){
+			var id=parseInt($(this).val());
+			$('#district').html('<option value="0">请选择地区</option>');
+			if(id>0){
+				$.post("user.html?act=ajax_city",{id:id}, function(msg){
+					if(msg !=''){
+						$('#district').show();
+					  $('#district').html(msg);
+					}else{
+						$('#district').hide();
+					}
+			   });
+			}
+ 	 	}); 	
+ 	 	
+	$(".edit-btn.edit-plus").bind("click",function(){//加
+		var numTxt = parseInt($(this).siblings(".edit-total").attr("value"));
+		$(this).siblings(".edit-total").attr("value",numTxt+1);
+		$(this).parents(".sc-info").find(".sc-num").html(numTxt+1);
+		var id=$(this).siblings(".edit-total").attr("name")
+		ajax_update_cart(id,numTxt+1)
+	});
+	
+    $('#buy_Acfor').click(function(){
+	    var str='';
+		$('.rec_check').each(function(){
+			if($(this).attr('checked')=='checked'){
+				str+=$(this).val()+',';
+			}
+		});
+		if(str==''){
+			alert('请先选择要删除的商品！');
+			return false;
+		}else{
+			var n=str.length-1;
+			var val=str.substr(0,n);
+			location='cart.html?step=drop_goods&id='+val;
+		}
+	});
+	$('#buysub').click(function(){
+		 var val=$('input:radio[name="payment"]:checked').val();
+		 
+		 if(val=='undefined' || val== null){
+			 alert('请先选择支付方式！');
+			 return false;
+	     }
+		 $("#cartfm").submit();	
+	});
+})
+
+function ajax_update_cart(id,num){
+	$.post("cart.html?action=ajax_update_cart", {rec_id:id,number:num},function(msg){
+	   if(msg['error']==0){
+		   $('#buy_Amax').text(msg['content']['goods_price']);
+		   $('#tmp').text(msg['content']['market_price']);
+		   $('#sav').text(msg['content']['saving']);
+		   $('.price_td'+id).text('￥'+msg['price']+'元');
+	   }else{
+			alert(msg['message']);
+	   }
+	}, "json");    
+}
+function checkaddress(obj){
+	var province=obj.province.value;
+	var city=obj.city.value;
+	var address=obj.address.value;
+	var consignee=obj.consignee.value;
+	var mobile=obj.mobile.value;
+	if(province<1){
+		alert('请先选择省份！');
+		return false;
+	}
+	if(city<1){
+		alert('请先选择城市！');
+		return false;
+	}
+	if(address.length<1){
+		alert('详细地址不能为空！');
+		return false;
+	}
+	if(consignee.length<1){
+		alert('收货人姓名不能为空！');
+		return false;
+	}
+	if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(mobile)) || mobile.length !=11){
+		alert('手机号码不正确！');
+		return false;
+    }
+		
+}	
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="themes/default/css/style.css"/>
+<link rel="shortcut icon" href="gsp_favicon.ico" />
+</head>
+<body>
+{include file="header_flow.html"}
+
+    <div class="slider">
+    	<div class="login wd1200">
+            <div class="login_img fl"><img width="600" height="420" alt="登录冠思品" src="themes/default/images/login_img.jpg"/></div>
+            <div class="login_for fr">
+               <form action="user.html" method="post" onsubmit="return checkfm(this)">
+            	<table width="520" border="0">
+                	<tr height="70">
+                    	<td width="110"></td>
+                        <td width="410">
+                        	<h3 class="login_name fl">登录冠思品</h3>
+                            <div class="login_click fr">
+                            	<a href="register.html" title="立即注册">立即注册</a>|
+                                <a href="user.html?act=get_password" title="找回密码？">找回密码？</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr height="68">
+                    	<td width="110"><label class="login_label fr">用户名：</label></td>
+                        <td width="410">
+                        	<div class="login_text1 login_text">
+                            	<input type="text" class="login_htext com_lgtext" name="username"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr height="68">
+                    	<td width="110"><label class="login_label fr">密码：</label></td>
+                        <td width="410">
+                        	<div class="login_text1 login_text">
+                            	<input type="password" class="login_htext com_lgtext" name="password"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr height="68">
+                    	<td width="110"><label class="login_label fr">验证码：</label></td>
+                        <td width="410">
+                        	<div class="login_text2 login_text fl">
+                            	<input type="text" class="login_htext com_lgtext" name="captcha"/>
+                            </div>
+                            <div class="login_shImg fl"><img width="126" height="42" src="captcha.php?is_login=1" class="img_vf" id="vf"/></div>
+                            <div class="login_shShure fr"><img width="24" height="20" src="themes/default/images/login_yzShure.jpg" class="img_vf"/></div>
+                        </td>
+                    </tr>
+                    <tr height="68">
+                    	<td width="110"></td>
+                        <td width="410">
+                        	<input type="submit" class="login_sub" value="立即登录"/>
+                        	<input type="hidden" name="act" value="act_login"/>
+                        	<input type="hidden" name="back_act" value="{$back_act}"/>
+                        </td>
+                    </tr>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>
+{include file="footer.html"}
+<script>
+$(function(){
+	$('.img_vf').click(function(){
+	    var time = new Date().getTime();
+        document.getElementById('vf').src= 'captcha.php?is_login=1&'+time;
+	});
+})
+function checkfm(obj){
+	var username=obj.username.value.trim();
+	var password=obj.password.value;
+	var captcha=obj.captcha.value;
+	if(username.length<3){
+		alert('用户名长度不能少于3字符！');
+		return false;
+	}
+	if(password.length <6 || password.length>12){
+		alert('密码长度不能少于6字符或大于12字符！');
+		return false;
+	}
+	if(captcha.length!=4){
+		alert('验证码不正确！');
+		return false;
+	}
+}
+</script>
+</body>
+</html>

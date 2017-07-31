@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="themes/default/css/style.css"/>
+<link rel="shortcut icon" href="gsp_favicon.ico" />
+</head>
+<body>
+	{include file="header.html"}
+    <div class="product">
+    	<div class="banner"><a href='{$banner_ad.ad_link}'><img height="478" src="data/afficheimg/{$banner_ad.ad_code}"/></a></div>
+        <div class="prod_cen wd1200">
+           {foreach from=$product_cat_list item=vo}
+            <div class="prod_cBox">
+                <div class="hot_proFor">
+            		<h3 class="hot_prname fl">{$vo.cat_name}</h3>
+                    <div class="pro_chnal fl">
+                       {foreach from=$vo.cat_list item=v key=k}
+                    	{if $k gt 0}|{/if}<a href="product-{$v.cat_id}.html" title="{$v.cat_name}">{$v.cat_name}</a>
+                       {/foreach}
+                    	
+                    </div>
+                	<a href="product-{$vo.cat_id}.html" title="更多" class="more fr">更多</a>
+            	</div>  
+                <div class="pro_show cl">
+            		<div class="pro_shlist">
+                		<ul>
+                    		<li></li>
+                    		<li></li>
+                    		{foreach from=$vo.hot_list item="v"}
+                        	<li>
+                        		<div class="pro_shImg">
+                            		<a href="pro_view-{$v.goods_id}.html" title="{$v.goods_name}"><img width="230" height="230" alt="" src="{$v.goods_img}"/></a>
+                            	</div>
+                            	<div class="pro_shAll">
+                            		<span class="pro_sApri fl">￥{$v.shop_price}</span>
+                                	<span class="pro_sAless fr">￥{$v.market_price}</span>
+                            	</div>
+                            	<div class="pro_shTitle"><a href="pro_view-{$v.goods_id}.html" title="{$v.goods_name}">{$v.goods_name}</a></div>
+                        	</li>
+                        	{/foreach} 
+                    	</ul>
+                	</div>
+                	<div class="pro_shAdd"><a href="{$vo.ad_link}" title="{$vo.ad_name}"><img width="596" height="294" alt="{$vo.ad_name}" src="data/afficheimg/{$vo.ad_code}"/></a></div>
+            	</div>
+            </div>
+            {/foreach}
+             
+        </div>
+    </div>    
+{include file="footer.html"}
+</body>
+</html>

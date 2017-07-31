@@ -1,0 +1,32 @@
+                	<ul>
+                    	<li {if $act eq 'order_list' or $act eq 'order_detail'}class="cur"{/if}>
+                        	<a href="user.html?act=order_list" title="我的订单">
+                            	<span class="mem_chicon1 mem_chicon fl"></span>
+                                <span class="mem_chtitle fl">我的订单</span>
+                            </a>
+                        </li>
+                        <li {if $act eq 'default'}class="cur"{/if}>
+                        	<a href="user.html" title="个人资料">
+                            	<span class="mem_chicon2 mem_chicon fl"></span>
+                                <span class="mem_chtitle fl">个人资料</span>
+                            </a>
+                        </li>
+                        <li {if $act eq 'change_password'}class="cur"{/if}>
+                        	<a href="user.html?act=change_password" title="密码管理">
+                            	<span class="mem_chicon3 mem_chicon fl"></span>
+                                <span class="mem_chtitle fl">密码管理</span>
+                            </a>
+                        </li>
+                        <li {if $act eq 'address_list'}class="cur"{/if}>
+                        	<a href="user.html?act=address_list" title="收货地址">
+                            	<span class="mem_chicon4 mem_chicon fl"></span>
+                                <span class="mem_chtitle fl">收货地址</span>
+                            </a>
+                        </li>
+                        <li>
+                        	<a href="logout.html" title="退出登录">
+                            	<span class="mem_chicon4 mem_chicon fl"></span>
+                                <span class="mem_chtitle fl">退出登录</span>
+                            </a>
+                        </li>
+                    </ul>

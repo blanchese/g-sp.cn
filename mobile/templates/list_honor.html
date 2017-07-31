@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+		<meta name = "viewport" content ="initial-scale=1.0,maximum-scale=1,user-scalable=no"><!-- 控制缩放比例 -->
+		<meta name="format-detection" content="telphone=no, email=no"/><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+		<meta http-equiv="Cache-Control" content="no-siteapp" /><!--  不让百度转码 -->
+		<title>{$page_title}</title>
+		<meta name="Keywords" content="{$keywords}" />
+		<meta name="Description" content="{$description}" />
+		<link rel="shortcut icon" href="../gsp_favicon.ico" />
+		
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="templates/css/reset.css?v=a11">
+		<link rel="stylesheet" type="text/css" href="templates/css/base.css?v=a11">
+		<link rel="stylesheet" type="text/css" href="templates/css/layout.css?v=a11">
+		
+		<!-- js -->
+		<script type="text/javascript" src="templates/js/jquery.min.js?v=a10"></script>
+		<script type="text/javascript" src="templates/js/custom.js?v=a10"></script>
+		
+		<!-- banner -->
+		<link rel="stylesheet" type="text/css" href="templates/js/swiper/swiper.min.css">
+		<script type="text/javascript" src="templates/js/swiper/swiper.jquery.min.js"></script>
+		
+	</head>
+	<body>
+		
+		<!-- Header -->
+		<div class="Header">
+			<div style="height:50px;"></div>
+			<header>
+				<div class="page-header">
+					<a href="index.html" class="page-return"></a>
+					<div class="header-nav">
+						<a href="javascript:;" class="nav-more"></a>
+					</div>
+					<div class="nav-box">
+						<div class="nav-block" style="display:none;">
+							{include file="nav.html"}
+						</div>
+					</div>
+					<div class="page-name">{$catinfo.cat_name}</div>
+				</div>
+			</header>
+		</div>
+		
+		
+		<!-- Contain -->
+		<div>
+		
+			<!-- 产品导航 -->
+			<div class="common-nav">
+				<ul>
+				   {foreach from=$art_cat_list item="v" key="k"}
+					<li {if $cat_id eq $v.cat_id}class="cur"{/if}>
+						<a href="list-{$v.cat_id}.html">{$v.cat_name}</a>
+					</li>
+					{/foreach}	 
+				</ul>
+			</div>
+			
+			<div class="con-box">
+				
+				<ul class="honor-list">
+				    {foreach from=$honnor_list item="vo"}
+					<li>
+						 {foreach from=$vo item=v}
+						<a href="javascript:;" title="{$v.title}">
+							<div class="honor-img">
+								<img src="{$v.file_url}" alt="$v.title}"/>
+							</div>
+							<p>{$v.title}</p>
+						</a>
+						{/foreach}
+					</li>
+					{/foreach}
+				</ul>
+								
+			</div>
+
+			
+		</div>
+		
+		{include file="footer.html"}
+		
+	</body>
+</html>

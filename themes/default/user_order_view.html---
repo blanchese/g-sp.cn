@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="themes/default/css/style.css"/>
+<link rel="shortcut icon" href="gsp_favicon.ico" />
+</head>
+<body>
+	{include file="header.html"}
+   	<div class="member cl">
+    	<div class="member_c wd1200">
+        	<div class="chnal_po">
+                <div class="position fr">
+                	<a href="" title="">首页</a>&gt;<a href="" title="">个人中心</a>&gt;<span>我的订单</span>
+                </div>
+            </div>
+            <div class="cl"></div>
+        	<div class="mem_l fl">
+            	<div class="mem_name"><h3>个人中心</h3></div>
+                <div class="mem_chnal">
+                	<ul>
+                    	{include file="left_nav.html"}
+                    </ul>
+                </div>
+            </div>
+            <div class="mem_r fr">
+            	<div class="mem_rSel">
+                	<ul>
+                    	<li class="cur"><a href="javascript:;" title="">订单详细</a></li>
+                	</ul>        
+                </div>
+               	<div class="order cl">
+                    <div class="order_Vtab">
+                    	<table width="914" border="0">
+                        	<tr height="30">
+                            	<td width="72"><label class="order_Vlabel">订单号   ：</label></td>
+                                <td width="842">{$order.order_sn}</td>
+                            </tr>
+                            <tr height="30">
+                            	<td width="72"><label class="order_Vlabel">下单时间：</label></td>
+                                <td width="842">{$order.formated_add_time}</td>
+                            </tr>
+                            <tr height="30">
+                            	<td width="72"><label class="order_Vlabel">订单状态：</label></td>
+                                <td width="842">
+                                	{$order.pay_status}
+                                </td>
+                            </tr>
+                            <tr height="30">
+                            	<td width="72"><label class="order_Vlabel">支付方式：</label></td>
+                                <td width="842">{$order.pay_name}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="order_Vall cl">
+                    	<div class="order_reTable">
+                            <table width="914" border="1" bordercolor="#dcdcdc">
+                                 <tr class="order_reRol">
+                                      <td width="462" style="padding-left:26px">订单详细</td>
+                                      <td width="196" align="center">购买数量</td>
+                                      <td width="226" align="center">总金额</td>
+                                 </tr>
+                                 {foreach from=$goods_list item=v}
+                                 <tr class="order_reRel">
+                                 	<td style="padding-left:26px;" width="462">
+                                    	<a href="pro_view-{$v.goods_id}.html" class="buy_for" title="{$v.goods_name}">
+                         					<img width="64" height="64" alt="{$v.goods_name}" src="{$v.goods_img}"/>
+                                			<span class="buy_ftitle fr col5">
+                                				{$v.goods_name}
+                                			</span>
+                            			</a>
+                                    </td>
+                              	    <td width="196" align="center">
+                                   		<span class="col8 order_time">{$v.goods_number}</span>
+                                    </td>
+                               	    <td width="226" align="center">
+                                   		<span class="order_pri">{$v.subtotal}</span>
+                                    </td>
+                                 </tr>
+                                 {/foreach}
+                    		</table>
+                        </div>
+                    </div>
+                    <div class="order_max">总计：<span class="colf">{$order.formated_order_amount}</span></div>
+            	</div>
+            </div>
+        </div>
+    </div>
+    {include file="footer.html"}
+</body>
+</html>

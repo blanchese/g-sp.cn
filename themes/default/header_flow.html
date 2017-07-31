@@ -1,0 +1,34 @@
+	<!--购物车头部-start-->
+    <div id="header" class="header">
+    	<div class="h_t">
+        	<div class="h_top wd1200">
+            	<div id="demo" class="qimo8">
+  					<div class="qimo">
+    					<div id="demo1">
+      						<ul>
+                               	<li>您好，欢迎来到冠思品电子有限公司</li>
+      						</ul>
+    					</div>
+    				<div id="demo2"></div>
+  				</div>
+			</div>
+                <div class="h_lg fl">
+                    {if $smarty.session.user_id gt 0}
+                	<a href="user.html" title="{$smarty.session.user_name}">{$smarty.session.user_name}</a>|<a href="logout.html" title="退出登录">退出登录</a>
+                	{else}
+                	<a href="login.html" title="登录">登录</a>|<a href="register.html" title="免费注册">免费注册</a>
+                	{/if}
+                </div>
+                <div class="lang fr">
+                	<a href="http://www.g-sp.cn/index.html" title="中文">中文</a>|<a href="http://www.g-sp.cn/en/index.html" title="English">English</a>
+                </div>
+            </div>
+        </div>
+        <div class="h_c wd1200 cl">
+        	<div class="logo fl">
+            	<a href="index.html" title="冠思品电子有限公司"><img width="130" height="84" alt="冠思品电子有限公司" src="images/logo.png"/></a>
+            </div>
+            <div class="h_car fr"><a href="" title="我的购物车"><span>购物车<font id="cart_num">{$cart_num}</font>件</span></a></div>
+        </div>
+    </div>
+    <!--购物车头部-end-->

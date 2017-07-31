@@ -1,0 +1,18 @@
+ {if $pager}
+ <form name="selectPageForm" action="" method="post"><!--
+ <a href="{$pager.page_first}">首页</a>
+ --><a href="{$pager.page_prev}">{$lang.page_prev}</a>
+ {foreach from="$pager.page_number" item="v" key="k"}
+  <a {if $page eq $k}class="on"{/if} href="{$v}">{$k}</a>
+  {/foreach}
+ <a href="{$pager.page_next}">{$lang.page_next}</a> 
+ <!-- <a href="{$pager.page_last}">末页</a>
+
+   {if $flag_page neq 1}
+  <span>{$lang.pager_1}{$pager.record_count}{$lang.pager_2}{$lang.pager_3}{$pager.page_count}{$lang.pager_4}</span>  
+  跳转到<input type="text" class="page_text" name="page"/> 页 
+  <input type="submit" class="page_sub" value="确定">
+   {/if}
+-->
+</form>
+{/if} 

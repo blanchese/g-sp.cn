@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="author" content="深圳卓越迈创(http://www.szmynet.com/)" />
+<link rel="stylesheet" type="text/css" href="themes/default/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="themes/default/css/style.css"/>
+<link rel="shortcut icon" href="gsp_favicon.ico" />
+</head>
+<body>
+{include file="header_flow.html"}
+    <div class="slider">
+    	<div class="slider_c wd1200">
+        	<div class="zc">
+            	<div class="zc_t">
+                	<ul>
+                    	<li class="cur">
+                        	<div class="zc_num fl">1</div>
+                            <div class="zc_name fl">会员注册</div>
+                        </li>
+                        <li>
+                        	<div class="zc_num fl">2</div>
+                            <div class="zc_name fl">注册成功</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="zc_d cl">
+                	<div class="zc_dl fl">
+                    	<div class="login_for1 login_for">
+            				<table width="540" border="0">
+                            	<tr height="40">
+                    				<td width="110"><label class="login_label fr">注册方式：</label></td>
+                        			<td width="430" class="login_fradio">
+                        				<span><input type="radio" checked="checked" class="type_ck" name="reg_type" value="0"/>&nbsp;&nbsp;手机注册</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        				<span><input type="radio" class="type_ck" name="reg_type" value="1"/>&nbsp;&nbsp;邮箱注册</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        			</td>
+                    			</tr>
+                			</table>
+            			</div>
+                        <div class="login_fshow">
+                        <div class="login_for show">
+                           <form action="user.html" method="post" onsubmit="return checkreg(this)">
+                        	<table>
+                            	<tr height="68">
+                    				<td width="110"><label class="login_label fr">用户名：</label></td>
+                        			<td width="430">
+                        				<div class="login_text1 login_text fl">
+                            				<input type="text" class="login_htext com_lgtext" placeholder="3-20个字符，建议大小写英文字母、中文" name="username" maxlength="20"/>
+                            			</div>
+                                        <div class="zc_xx fl">*</div>
+                        			</td>
+                    			</tr>
+                    			<tr height="68">
+                    				<td width="110"><label class="login_label fr">密码：</label></td>
+                        			<td width="430">
+                        				<div class="login_text1 login_text fl">
+                            				<input type="password" class="login_htext com_lgtext" name="password" placeholder="6-20个字符，建议大小写英文字母、符号或数字" maxlength="20"/>
+                            			</div>
+                                        <div class="zc_xx fl">*</div>
+                        			</td>
+                    			</tr>
+                                <tr height="68">
+                    				<td width="110"><label class="login_label fr">确认密码：</label></td>
+                        			<td width="430">
+                        				<div class="login_text1 login_text fl">
+                            				<input type="password" class="login_htext com_lgtext" name="confirm_password" placeholder="6-20个字符，建议大小写英文字母、符号或数字" maxlength="20"/>
+                            			</div>
+                                        <div class="zc_xx fl">*</div>
+                        			</td>
+                    			</tr>
+                                <tr height="68">
+                    				<td width="110"><label class="login_label fr">手机号码：</label></td>
+                        			<td width="430">
+                        				<div class="login_text1 login_text fl">
+                            				<input type="text" class="login_htext com_lgtext" id="mobile" name="mobile_phone"  placeholder="请输入手机号码"/>
+                            			</div>
+                                        <div class="zc_xx fl">*</div>
+                        			</td>
+                    			</tr>
+                                <tr height="68">
+                    				<td width="110"><label class="login_label fr">激活码：</label></td>
+                        			<td width="430">
+                        				<div class="login_text2 login_text fl">
+                            				<input type="text" class="login_htext com_lgtext" name="code"  placeholder="请输入激活码"/>
+                            			</div>
+                                        <input id="btn" type="button" class="zc_button fl" value="获取激活码"/>
+                        			</td>
+                    			</tr>
+                    			<tr height="68">
+                    				<td width="110"></td>
+                        			<td width="430">
+                        			    <input type="hidden" value="act_register" name="act">
+                        				<input type="submit" class="login_sub" value="立即注册"/>
+                        				<input type="hidden" name="register_type" value="mobile"/>
+                        			</td>
+                    			</tr>
+                            </table>
+                            </form>
+                        </div>
+                        <div class="login_for hide">
+                           <form action="user.html" method="post" onsubmit="return checkem(this)">
+                        	<table>
+                            	<tr height="68">
+                    				<td width="110"><label class="login_label fr">用户名：</label></td>
+                        			<td width="430">
+                        				<div class="login_text1 login_text fl">
+                            				<input type="text" class="login_htext com_lgtext"  placeholder="3-20个字符，建议大小写英文字母、中文" name="username" maxlength="20"/>
+                            			</div>
+                                        <div class="zc_xx fl">*</div>
+                        			</td>
+                    			</tr>
+                    			<tr height="68">
+                    				<td width="110"><label class="login_label fr">密码：</label></td>
+                        			<td width="430">
+                        				<div class="login_text1 login_text fl">
+                            				<input type="password" class="login_htext com_lgtext" name="password" maxlength="20"  placeholder="6-20个字符，建议大小写英文字母、符号或数字" />
+                            			</div>
+                                        <div class="zc_xx fl">*</div>
+                        			</td>
+                    			</tr>
+                                <tr height="68">
+                    				<td width="110"><label class="login_label fr">确认密码：</label></td>
+                        			<td width="430">
+                        				<div class="login_text1 login_text fl">
+                            				<input type="password" class="login_htext com_lgtext" name="confirm_password" maxlength="20"  placeholder="6-20个字符，建议大小写英文字母、符号或数字" />
+                            			</div>
+                                        <div class="zc_xx fl">*</div>
+                        			</td>
+                    			</tr>
+                                <tr height="68">
+                    				<td width="110"><label class="login_label fr">邮箱地址：</label></td>
+                        			<td width="430">
+                        				<div class="login_text1 login_text fl">
+                            				<input type="text" class="login_htext com_lgtext" id="email" name="email"  placeholder="请输入电子邮箱" />
+                            			</div>
+                                        <div class="zc_xx fl">*</div>
+                        			</td>
+                    			</tr>
+                                <tr height="68">
+                    				<td width="110"><label class="login_label fr">激活码：</label></td>
+                        			<td width="430">
+                        				<div class="login_text2 login_text fl">
+                            				<input type="text" class="login_htext com_lgtext" name="code" placeholder="请输入激活码"/>
+                            			</div>
+                                        <input id="btn1" type="button" class="zc_button fl" value="获取激活码"/>
+                        			</td>
+                    			</tr>
+                    			<tr height="68">
+                    				<td width="110"></td>
+                        			<td width="430">
+                        				<input type="submit" class="login_sub" value="立即注册"/>
+                        			    <input type="hidden" value="act_register" name="act">
+                        			    <input type="hidden" name="register_type" value="email"/>
+                        			</td>
+                    			</tr>
+                            </table>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="zc_dr fr">
+                    	<div class="zc_drhave">已有会员帐号？<a href="login.html" title="登录">登录</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{include file="footer.html"}
+<script type="text/javascript">
+$(function(){
+	/*注册*/
+	var $zc_radthis = $(".login_fradio span")
+		$zc_radthis.click(function(){
+			$(this).find('input').attr('checked','checked').end().siblings().find('input').attr('checked',false)
+	 	 	var zc_radindex = $zc_radthis.index(this);
+	 		$(".login_fshow>div").eq(zc_radindex).show().siblings().hide();
+	   });	
+	var radio_index=$('.type_ck:checked').val();
+	$(".login_fshow>div").eq(radio_index).show().siblings().hide();
+
+	$('#btn1').click(function(){
+		var email=$('#email').val();
+		if(!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)){
+			alert('邮箱不正确！');
+			return false;
+	    }else{
+	    	time1();
+	    	$.post("user.html?act=ajax_email", {email:email},function(msg){
+	    		 if(msg !=1 && msg !=''){
+					 alert(msg);
+			      }
+	        });
+		}
+	});
+	$('#btn').click(function(){
+		var mobile=$('#mobile').val();
+		if(!(/^1[3|4|5|8][0-9]\d{8}$/.test(mobile))){
+			alert('手机号码不正确！');
+			return false;
+	    }else{
+	    	time();
+	    	/*$.post("user.html?act=ajax_email", {email:email},function(msg){
+	    		 if(msg !=1 && msg !=''){
+					 alert(msg);
+			      }
+	        });*/
+		}
+	});
+	
+})
+
+var wait1=60;
+document.getElementById("btn1").disabled = false;  
+function time1() {
+	    var obj=document.getElementById("btn1");
+        if (wait1 == 0) {
+        	obj.removeAttribute("disabled");          
+        	obj.value="获取激活码";
+            wait1 = 60;
+        } else {
+        	obj.setAttribute("disabled", true);
+        	obj.value="重新发送(" + wait1 + ")";
+            wait1--;
+            setTimeout(function() {
+                time1()
+            },
+            1000)
+        }
+    }
+
+var wait=60;
+document.getElementById("btn").disabled = false;  
+function time() {
+	    var obj=document.getElementById("btn");
+        if (wait == 0) {
+        	obj.removeAttribute("disabled");          
+        	obj.value="获取激活码";
+            wait = 60;
+        } else {
+        	obj.setAttribute("disabled", true);
+        	obj.value="重新发送(" + wait + ")";
+            wait--;
+            setTimeout(function() {
+                time()
+            },
+            1000)
+        }
+    }
+
+function checkreg(obj){
+	var username=obj.username.value.trim();
+	var password=obj.password.value;
+	var confirm_password=obj.confirm_password.value;
+	var mobile_phone=obj.mobile_phone.value.trim();
+	var code=obj.code.value.trim();
+	if(username.length<3){
+		alert('用户名长度不能少于 3 个字符！');
+		return false;
+	}
+	if(password.length<6 || password.length>12){
+		alert('密码长度不能少于6 个字符或大于12个字符！');
+		return false;
+	}
+	if(password != confirm_password){
+		alert('前后输入密码不一致！');
+		return false;
+	}
+	if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(mobile_phone)) || mobile_phone.length !=11){
+		alert('手机号码不正确！');
+		return false;
+    }
+	/*if(code.length != 5){
+		alert('激活码不正确！');
+		return false;
+	}*/
+}
+function checkem(obj){
+	var username=obj.username.value.trim();
+	var password=obj.password.value;
+	var confirm_password=obj.confirm_password.value;
+	var mobile_phone=obj.mobile_phone.value.trim();
+	var code=obj.code.value.trim();
+	if(username.length<3){
+		alert('用户名长度不能少于 3 个字符！');
+		return false;
+	}
+	if(password.length<6 || password.length>12){
+		alert('密码长度不能少于6 个字符或大于12个字符！');
+		return false;
+	}
+	if(password != confirm_password){
+		alert('前后输入密码不一致！');
+		return false;
+	}
+	if(!email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)){
+		alert('邮箱不正确！');
+		return false;
+    }
+	/*if(code.length != 5){
+		alert('激活码不正确！');
+		return false;
+	}*/
+ 
+}
+</script>               
+</body>
+</html>

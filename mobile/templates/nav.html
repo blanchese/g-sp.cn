@@ -1,0 +1,27 @@
+							<ul class="page-nav">
+								<li>
+									<a href="javascript:;">产品中心</a>
+									<ul class="sPage-nav">
+									    {foreach from=$product_cat_list item=v}
+										<li>
+											<a href="product-{$v.cat_id}.html">{$v.cat_name}</a>
+										</li> 
+										{/foreach}
+									</ul>
+								</li>
+								{foreach from=$footer_nav item="vo" key="k"}
+								{if $k lt 4}
+								<li>
+									<a href="javascript:;">{$vo.cat_name}</a>
+									<ul class="sPage-nav">
+									    {foreach from=$vo.list item=v}
+										<li>
+											<a href="list-{$v.cat_id}.html">{$v.cat_name}</a>
+										</li>
+										{/foreach}
+									</ul>
+								</li>
+								{/if}
+								{/foreach} 
+								 
+							</ul>
